@@ -6,7 +6,7 @@ import { PathProvider } from './utils/contexts/PathContext';
 import { ToastContainer, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { createRoot } from 'react-dom/client';
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ActiveButtonProvider>
