@@ -1,0 +1,231 @@
+
+/* =====================================MAIN CONTENT ============================== */
+
+.mainContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+/* ============================================= DASHBOARD ====================================== */
+
+.dashboardContent{
+  position: relative;
+  width: 100%;  
+  margin-top: 16px;
+  z-index: 1;
+}
+
+/* ================================== SEARCH BAR ================== */
+.searchBar{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; 
+  align-items: center; 
+  margin-top: -8px;
+  margin-bottom: 8px;
+}
+.searchInput{
+  height: 32px;
+  border-radius: 16px;
+  border: solid 2px #00C60E;
+  padding-left: 8px;
+  transition: all .2s ease;
+}
+.buttonContainer {
+  display: flex;
+  flex-direction: row; 
+}
+
+.filterDropdown{
+  height: 32px;
+  border: none;
+  background: #5479f7;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fafafa;
+  padding: 4px 8px;
+  cursor: pointer;
+  margin-left: 4px;
+}
+
+.printBtn{
+  width: 80px;
+  height: 32px;
+  background-color: #5479f7;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  margin-left: 4px;
+}
+.printImg{
+  width: 28px;
+  height: auto;
+}
+
+
+/* ============================================== TABLE ==================================== */
+.tableContainer {
+  width: 100%;
+  overflow-x: auto; 
+}
+
+.classInfoTable {
+  width: 100%;
+  border-collapse: collapse; 
+}
+
+.classInfoTable th,
+.classInfoTable td {
+  border-bottom: 1px solid #5479f7; 
+  padding: 6px 8px; 
+  text-align: center; 
+}
+.classInfoTable th {
+  background-color: #f2f2f2; 
+  border-bottom: 3px solid #5479f7;
+  font-weight: bold; 
+}
+.classInfoTable tr{
+  background-color: #fafafa;
+}
+
+.actionRow{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.studentsBtn {
+  border: none;
+  background: none;
+  width: 32px;
+  height: auto;
+  cursor: pointer;
+  transition: filter 0.3s ease; /* Add smooth transition */
+}
+
+.studentsBtn:hover {
+  filter: drop-shadow(0 0 8px rgba(0, 123, 255, 0.6)); /* Glow effect around the image */
+}
+
+.studentsImg {
+  width: 32px;
+  height: auto;
+}
+
+
+
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ============================================ MEDIA QUERIES ================================== */
+
+/* Mobile Styles (up to 500px) */
+@media (max-width: 500px) {
+
+  /* Search Bar */
+  .searchBar {
+    flex-direction: row; 
+    align-items: flex-start; 
+  }
+
+  .filterDropdown{
+    font-size: 12px;
+  }
+
+  .searchInput {
+    width: 100%; 
+    margin-bottom: 8px; 
+  }
+
+  .buttonContainer {
+    flex-direction: row; 
+    width: 100%; 
+  }
+
+  /* Buttons */
+  .searchBtn,
+  .addBtn,
+  .addFile,
+  .csvFormat {
+    flex: 1; 
+    margin-right: 0; 
+    margin-bottom: 8px; 
+    font-size: 12px;
+    padding: 1px 2.5px;
+  }
+
+  /* Button Images */
+  .searchBtn img,
+  .addBtn img,
+  .addFile img,
+  .csvFormat img {
+    width: 24px;
+    vertical-align: middle;
+    height: auto;
+  }
+
+  /* Last Button Margin */
+  .searchBtn:last-child,
+  .addBtn:last-child,
+  .addFile:last-child,
+  .csvFormat:last-child {
+    margin-bottom: 0; 
+  }
+}
+
+/* Tablet Styles (501px to 1024px) */
+@media (min-width: 501px) and (max-width: 1024px) {
+  
+  /* Search Bar Adjustments */
+  .searchBar {
+    flex-direction: row; 
+    justify-content: space-between; 
+    align-items: center; 
+  }
+
+  .searchInput {
+    width: calc(100% - 120px); /* Adjust for button space */
+    margin-bottom: 0; /* Reset bottom margin */
+  }
+
+  .buttonContainer {
+    flex-direction: row; 
+    width: auto; 
+  }
+
+  /* Buttons */
+  .searchBtn,
+  .addBtn,
+  .addFile,
+  .csvFormat {
+    flex: 0 1 auto; /* Allow buttons to size according to content */
+    margin: 0 4px; /* Space between buttons */
+    font-size: 14px;
+    padding: 4px 8px;
+  }
+
+  /* Button Images */
+  .searchBtn img,
+  .addBtn img,
+  .addFile img,
+  .csvFormat img {
+    width: 28px; /* Slightly larger images */
+    height: auto;
+  }
+}

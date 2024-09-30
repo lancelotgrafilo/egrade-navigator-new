@@ -1,0 +1,533 @@
+
+.loginPageContainer {
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navBar {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.navUl {
+  display: flex;
+  list-style: none;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+}
+
+.navLi,
+#navLi {
+  font-weight: 600;
+  list-style-type: none;
+  margin-right: 32px;
+  animation: slideTop 1s ease forwards;
+  animation-delay: calc(0.2s * var(--i));
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .3s ease;
+}
+
+.navButton {
+  font-size: 24px;
+  text-decoration: none;
+  padding: 8px 24px;
+  border-radius: 24px;
+  transition: all 0.3s ease;
+}
+
+.navButton:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #1b4a9c;
+  transform: translateY(-5px);
+}
+
+.navLogo {
+  width: 250px;
+  height: auto;
+  margin-left: 5%;
+  animation: slideRight 1s ease forwards;
+}
+
+/* ================================= CONTENT ======================================*/
+
+.homeSection {
+  height: 85.5vh;
+  position: relative;
+  background: url('../../assets/images/lefthexagon.svg') no-repeat left top;
+  background-size: cover;
+  animation: slideRight 1s ease forwards;
+  z-index: 1;
+}
+
+.homeContainer {
+  height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5% 100px 5%;
+  z-index: 2;
+}
+
+.homeh1 {
+  font-size: 70px;
+  text-align: left;
+  line-height: 1.1;
+  max-width: 150%;
+  height: auto;
+  animation: slideRight 1.2s ease forwards;
+  opacity: 0;
+  margin-top: -100px;
+  z-index: 2;
+}
+
+.successSpan {
+  color: #1b4a9c;
+}
+
+.pageDivider {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 0;
+  pointer-events: none;
+  margin: 0;
+}
+
+.pageDivider img {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  margin-bottom: -16px;
+  animation: slideTop 1s ease forwards;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.loginContainer {
+  width: 450px;
+  height: 400px;
+  border: 0.5px solid #1b4a9c;
+  border-radius: 24px;
+  box-shadow: 0 4px 12px rgba(27, 74, 156, 0.3);
+  background-color: #cae0fd;
+  padding: 32px 24px 32px 24px;
+  margin-top: -120px;
+  z-index: 1;
+  animation: slideTop 1s ease forwards;
+}
+
+.gradeLogo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formLogo {
+  width: 180px;
+  height: auto;
+  margin-top: -16px;
+}
+
+.loginContainer h1 {
+  font-size: 36px;
+  text-align: center;
+}
+
+.inputBox {
+  position: relative;
+  width: 100%;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 8px rgba(27, 74, 156, 0.2);
+  border-radius: 40px;
+}
+
+.inputLabelUser,
+.inputLabelPass {
+  color: #fff;
+  font-size: 24px;
+  position: absolute;
+  left: 24px;
+  top: 0.5rem;
+  padding-left: 2px;
+  padding-right: 2px;
+  transition: top 0.2s ease-in-out, left 0.2s ease-in-out, font-size 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.userInput:focus ~ .inputLabelUser,
+.userPass:focus ~ .inputLabelPass {
+  color: #3c3c3b;
+  top: -0.6rem;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: transparent;
+  border-radius: 32px;
+}
+
+.userInput:not(:focus):not(:placeholder-shown) ~ .inputLabelUser,
+.userPass:not(:focus):not(:placeholder-shown) ~ .inputLabelPass {
+  top: -0.6rem;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #6e8ec5;
+  border-radius: 32px;
+  color: #fff;
+}
+
+.userInput,
+.userPass {
+  padding: 8px;
+  width: 100%;
+  background-color: #6e8ec5;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  font-size: 24px;
+  color: #3c3c3b;
+  box-sizing: border-box;
+  padding-left: 24px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.userInput:focus,
+.userPass:focus {
+  background-color: #fff;
+}
+
+.userInput:not(:placeholder-shown):not(:focus),
+.userPass:not(:placeholder-shown):not(:focus) {
+  color: #fff;
+}
+
+.inputBox img {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+
+/* Add styles for the toggle password button */
+.togglePasswordButton {
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1;
+  transition: transform 0.2s ease-in-out;
+}
+
+.togglePasswordButton img {
+  width: 24px; /* Adjust size as needed */
+  height: auto;
+  /* filter: invert(100%); Invert icon colors if necessary */
+}
+
+/* Adjust styles for smaller screens */
+@media (min-width: 100px) and (max-width: 500px) {
+  .togglePasswordButton {
+    right: 8px;
+  }
+
+  .togglePasswordButton img {
+    width: 16px; /* Adjust size for smaller screens */
+  }
+}
+
+.rememberForgot {
+  display: flex;
+  justify-content: center; 
+  align-items: center;     
+  position: absolute;      
+  bottom: 20px;            
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  font-size: 16px;
+}
+
+.forgotPass {
+  color: #3c3c3b;
+  text-decoration: none;
+}
+
+.forgotPass:hover {
+  text-decoration: underline;
+}
+
+
+
+.rememberForgot label {
+  display: flex;
+  align-items: center;
+  margin-top: -16px;
+}
+
+.rememberForgot label input {
+  accent-color: #1b4a9c;
+  margin-right: 3px;
+}
+
+.forgotPass {
+  color: #3c3c3b;
+  text-decoration: none;
+  margin-top: -16px;
+}
+
+.forgotPass:hover {
+  text-decoration: underline;
+}
+
+.loginButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 45px;
+  background: #1b4a9c;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  border-radius: 32px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  border: none;
+  transition: all .3s ease;
+}
+
+.loginButton:disabled{
+  background-color: #D3D3D3; /* Light Gray */
+  color: #3b3b3b;
+  cursor: not-allowed;
+  /* opacity: 0.6; */
+}
+
+.loginButton:hover{
+  transform: translateY(-5px);
+}
+
+.loader {
+  vertical-align: middle;
+  width: 36px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 6px solid #1b4a9c;
+  animation:
+    l20-1 0.8s infinite linear alternate,
+    l20-2 1.6s infinite linear;
+}
+@keyframes l20-1{
+   0%    {clip-path: polygon(50% 50%,0       0,  50%   0%,  50%    0%, 50%    0%, 50%    0%, 50%    0% )}
+   12.5% {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100%   0%, 100%   0%, 100%   0% )}
+   25%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 100% 100%, 100% 100% )}
+   50%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
+   62.5% {clip-path: polygon(50% 50%,100%    0, 100%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
+   75%   {clip-path: polygon(50% 50%,100% 100%, 100% 100%,  100% 100%, 100% 100%, 50%  100%, 0%   100% )}
+   100%  {clip-path: polygon(50% 50%,50%  100%,  50% 100%,   50% 100%,  50% 100%, 50%  100%, 0%   100% )}
+}
+@keyframes l20-2{ 
+  0%    {transform:scaleY(1)  rotate(0deg)}
+  49.99%{transform:scaleY(1)  rotate(135deg)}
+  50%   {transform:scaleY(-1) rotate(0deg)}
+  100%  {transform:scaleY(-1) rotate(-135deg)}
+}
+
+
+
+/* KEYFRAMES ANIMATION */
+@keyframes slideRight {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideTop {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideBottom {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+@media (min-width: 100px) and (max-width: 500px) {
+
+  .navBar{
+    height: 80px;
+    padding: 8px 16px;
+  }
+  .navLogo{
+    width: 150px;
+    margin-left: 0;
+  }
+
+  .navUl{
+    margin-right: 0;
+  }
+
+  .navLi,
+  #navLi{
+    margin-right: -8px;
+  }
+
+  .navButton,
+  .login{
+    font-size: 12px;
+    margin-right: 0;
+  }
+  .login{
+    padding: 8px 12px;
+  }
+
+  .homeh1{
+    font-size: 28px;
+    margin-left: -8px;
+    margin-top: 0;
+    text-align: center;
+  }
+  
+
+  .homeContainer{
+    flex-direction: column;
+    height: 450px;
+    gap: 0;
+  }
+
+  .homeSection{
+    height: 91dvh;
+  }
+  
+
+  .loginContainer{
+    width: 300px;
+    height: 220px;
+    padding: 16px 12px;
+    margin-top: 0;
+  }
+
+  .formLogo{
+    width: 100px;
+  }
+
+  .gradeLogo{
+    margin-top: 8px;
+  }
+
+  .loginContainer h1 {
+    font-size: 18px;
+  }
+
+  .inputBox {
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+
+  .inputLabelUser,
+  .inputLabelPass {
+    font-size: 12px;
+    left: 12px;
+    top: 0.5rem;
+  }
+
+
+
+
+  .userInput:not(:focus):not(:placeholder-shown) ~ .inputLabelUser,
+  .userPass:not(:focus):not(:placeholder-shown) ~ .inputLabelPass {
+    top: -0.4rem;
+    font-size: 10px;
+  }
+
+  .userInput:focus ~ .inputLabelUser,
+  .userPass:focus ~ .inputLabelPass {
+    font-size: 9px;
+    top: -0.4rem;
+  }
+
+  .userInput,
+  .userPass {
+    padding: 8px;
+    font-size: 12px;
+    color: #3c3c3b;
+    box-sizing: border-box;
+    padding-left: 12px;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .inputBox img {
+    width: 16px;
+  }
+
+  .loginContainer .rememberForgot {
+    font-size: 8px;
+  }
+
+  .forgotPass {
+    margin-top: -8px;
+  }
+  .rememberForgot label{
+    margin-top: -9px;
+  }
+
+  .loginButton{
+    font-size: 16px;
+    height: 24px;
+  }
+  
+
+}

@@ -1,0 +1,402 @@
+/* =====================================MAIN CONTENT ============================== */
+.mainContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* ============================================= DASHBOARD ====================================== */
+.dashboardContent {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ======================================= Account Verification Form ============================= */
+.verifiedMessage {
+  padding: 12px 16px;
+  background-color: #28A745; /* Green background for verified */
+  color: #ffffff;
+  border-radius: 8px;
+  margin: 8px 0;
+  text-align: center;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Spacing between text and icon */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.accountVerificationContainer {
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 8px;
+}
+
+.verificationForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.verifyButton,
+.sendCodeButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.verifyButton {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.sendCodeButton {
+  background-color: #5479f7; /* Blue for Send Code */
+  color: white;
+}
+
+.sendCodeButton:disabled,
+.verifyButton:disabled {
+  background-color: #D3D3D3; /* Light Gray */
+  color: #3b3b3b;
+  cursor: not-allowed;
+  opacity: 0.6; /* Optional: to reduce contrast and indicate disability */
+  transition: 0.3s ease-in-out;
+}
+
+.userConfig {
+  display: flex;
+  flex-direction: column;
+}
+
+.columnContainer {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping of columns */
+}
+
+.column {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.userConfigInputField {
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.submitButton {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  background-color: #007bff;
+}
+
+.togglePasswordButton {
+  margin-top: 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+  background-color: #6c757d;
+  color: white;
+  cursor: pointer;
+}
+
+hr {
+  width: 100%;
+  height: 3px;
+  background-color: #3b3b3b;
+}
+
+.verifiedIcon {
+  width: 32px;
+  height: auto;
+  vertical-align: middle;
+}
+
+/* ================================== FORM =================================== */
+.passwordContainer {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  z-index: 3;
+}
+
+.rowColumn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.formContainer label {
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 8px;
+  padding-left: 8px;
+}
+
+.formContainer input {
+  font-size: 20px;
+  padding: 4px 8px;
+  border-radius: 24px;
+  border: 2px solid #5479f7;
+}
+
+.showPass input {
+  margin-left: 8px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+}
+
+.saveButton {
+  font-size: 16px;
+  background-color: #4CAF50;
+  margin-top: 4px;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 16px;
+  cursor: pointer;
+  letter-spacing: 1.5px;
+  transition: 0.3s ease-in-out;
+}
+
+.saveButton:disabled,
+.showPasswordButton:disabled {
+  background-color: #D3D3D3; 
+  color: #3b3b3b;
+  cursor: not-allowed;
+  opacity: 0.6; 
+  transition: 0.3s ease-in-out;
+}
+
+.userConfigContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.userConfigInputField {
+  width: 100%;
+  font-size: 16px;
+  border-radius: 16px;
+  border: solid 2px #5479f7;
+  margin-bottom: 4px;
+  padding: 4px 8px;
+  font-weight: 500;
+}
+
+.showPasswordButton {
+  font-size: 12px;
+  background-color: #5479f7;
+  margin-top: 4px;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 16px;
+  cursor: pointer;
+  letter-spacing: 1.5px;
+  transition: 0.3s ease-in-out;
+}
+
+.userConfig label {
+  font-size: 14px;
+}
+
+.imageContainer {
+  position: relative;
+  width: 250px; /* Set fixed width for the container */
+  height: 250px; /* Set fixed height for the container */
+  display: flex;
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Center the content vertically */
+  margin: 0 auto; /* Ensure the container itself is centered */
+  border-radius: 50%; /* Circle shape */
+  border: 2px solid #ddd; /* Add border around the image */
+  background-color: #f0f0f0; /* Background color for the container */
+}
+
+.profileImg {
+  width: 100%; /* Image takes up full width of the container */
+  height: 100%; /* Image takes up full height of the container */
+  object-fit: cover; /* Maintain aspect ratio of the image */
+  border-radius: 50%; /* Ensure the image is circular */
+}
+
+.removeImageButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(160, 160, 160, 0.8); /* Semi-transparent background */
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 18px;
+  color: #e4e4e4;
+  transition: all .3s;
+}
+
+.removeImageButton:hover {
+  background: rgba(110, 110, 110, 0.8); /* Solid background on hover */
+}
+
+.editButton {
+  background-color: #5479f7; /* Blue for Edit state */
+  color: white;
+  padding: 5px 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.editButton:hover {
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow on hover */
+}
+
+.editButton:active {
+  box-shadow: none; /* Remove shadow on active click */
+}
+
+.editButton.cancel {
+  background-color: #f44336; /* Red for Cancel state */
+}
+
+.editButton.cancel:hover {
+  background-color: #e53935; /* Slightly darker red on hover */
+}
+
+.editButton.cancel:active {
+  background-color: #d32f2f; /* Even darker red on active click */
+}
+
+.loader {
+  vertical-align: middle;
+  width: 20px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 4px solid #1b4a9c;
+  animation:
+    l20-1 0.8s infinite linear alternate,
+    l20-2 1.6s infinite linear;
+}
+
+@keyframes l20-1 {
+  0% { clip-path: polygon(50% 50%, 0 0, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%); }
+  12.5% { clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 0%, 100% 0%, 100% 0%); }
+  25% { clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 100% 100%, 100% 100%); }
+  50% { clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 50% 100%, 0 100%); }
+  62.5% { clip-path: polygon(50% 50%, 100% 0, 100% 0%, 100% 0%, 100% 100%, 50% 100%, 0 100%); }
+  75% { clip-path: polygon(50% 50%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 50% 100%, 0 100%); }
+  100% { clip-path: polygon(50% 50%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 0 100%); }
+}
+
+@keyframes l20-2 {
+  0% { transform: scaleY(1) rotate(0deg); }
+  49.99% { transform: scaleY(1) rotate(135deg); }
+  50% { transform: scaleY(-1) rotate(0deg); }
+  100% { transform: scaleY(-1) rotate(-135deg); }
+}
+
+/* Media Queries for Mobile and Tablet Devices */
+@media (max-width: 768px) { /* Tablet and below */
+  .dashboardContent {
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items */
+  }
+
+  .columnContainer {
+    flex-direction: column; /* Stack columns vertically */
+  }
+
+  .column {
+    margin-right: 0; /* Remove right margin for stacked columns */
+    margin-bottom: 20px; /* Add margin between stacked columns */
+  }
+
+  .userConfigInputField,
+  .formContainer input {
+    font-size: 16px; /* Adjust font size for smaller screens */
+  }
+
+  .formContainer label {
+    font-size: 20px; /* Adjust label size */
+  }
+
+  .imageContainer {
+    width: 200px; /* Adjust image container size */
+    height: 200px; /* Adjust image container size */
+  }
+
+  .verifiedMessage {
+    font-size: 14px; /* Adjust message font size */
+  }
+}
+
+@media (max-width: 480px) { /* Mobile devices */
+  .userConfigInputField,
+  .formContainer input {
+    font-size: 14px; /* Further adjust font size */
+  }
+
+  .formContainer label {
+    font-size: 18px; /* Further adjust label size */
+  }
+
+  .verifiedMessage {
+    font-size: 12px; /* Further adjust message font size */
+  }
+
+  .saveButton,
+  .verifyButton,
+  .sendCodeButton,
+  .editButton,
+  .togglePasswordButton {
+    padding: 8px; /* Adjust button padding */
+    font-size: 14px; /* Adjust button font size */
+  }
+}

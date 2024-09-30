@@ -1,0 +1,166 @@
+.dashboardHeader{
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  text-align: left;
+  margin-bottom: 4px;
+}
+.dashboardEntrance{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+.dashboardEntrance h1 {
+  font-size: clamp(16px, 4vw, 48px);
+  text-align: left;
+}
+.dashboardEntrance span{
+  font-size: 32px;
+  margin-left: 24px;
+}
+.wrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 100%;
+  position: relative;
+  margin-right: 16px;
+}
+.bellIcon{
+  width: 48px;
+  height: auto;
+  vertical-align: middle;
+}
+.notifBtns{
+  background: none;
+  border: none;
+  margin-right: 4px;
+}
+.wrapper::after{
+  content: attr(data-number);
+  width: 20px;
+  height: auto;
+  background-color: rgb(228, 8, 8);
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 5px;
+  right: 0;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: all .25s;
+  border-radius: 50%;
+  position: absolute;
+}
+.wrapper:hover::after{
+  transform: translateY(0);
+}
+.bellIcon:hover,
+.darkMode:hover{
+  animation: shake 1s forwards;
+}
+
+@keyframes shake{
+  0%{
+    transform: rotate(15deg);
+  }
+  20%{
+    transform: rotate(-15deg);
+  }
+  30%{
+    transform: rotate(15deg);
+  }
+  50%{
+    transform: rotate(0);
+  }
+}
+
+
+
+
+
+
+.dashboardIconB{
+  width: 32px;
+  height: auto;
+  vertical-align: middle;
+  margin-right: 16px;
+}
+
+.dashboardSpan{
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  border-radius: 24px;
+  background-color: #caddff;
+  padding-left: 16px;
+}
+.dashboardSpan span{
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.hr1{
+  background-color: #5479f7;
+  width: 100%;
+  height: 5px;
+  margin-top: 8px;
+  border-radius: 3px;
+}
+
+
+
+.dropdown {
+  position: absolute;
+  padding: 16px 16px;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 24px;
+  z-index: 1000;
+  width: 350px;
+}
+
+.dropdown p {
+  padding: 10px;
+  margin: 0;
+}
+
+@media (min-width: 100px) and (max-width: 500px) {
+  
+  .mainContainer{
+    margin-left: -8px;
+  }
+
+  .dashboardEntrance h1{
+    font-size: 22px;
+    margin-left: 8px;
+  }
+  .dashboardIconB{
+    width: 32px;
+    margin-right: 8px;
+  }
+
+  .dashboardSpan span{
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: -4px;
+  }
+
+  .wrapper{
+    margin-right: 0;
+  }
+
+
+
+}

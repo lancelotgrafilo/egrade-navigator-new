@@ -1,0 +1,396 @@
+
+/* ===================================== MAIN CONTENT STYLES ================================= */
+
+
+.mainContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.greetingCard {
+  padding: 16px 32px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin-top: 20px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.greetingCard h2 {
+  margin: 0;
+  font-size: 24px;
+  text-align: center;
+}
+
+.greetingCard p {
+  margin: 5px 0 0 0;
+  font-size: 16px;
+  color: #555;
+  text-align: center;
+}
+/* =====================================MAIN CONTENT ============================== */
+
+
+
+.mainContent {
+  position: relative;
+  min-height: 100vh;
+  top: 0;
+  width: calc(100% - 80px);
+  left: 80px; 
+  transition: left 0.3s ease, width 0.3s ease;
+}
+
+.mainContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+}
+
+.sidebar.active ~ .mainContent {
+  left: 300px; 
+  width: calc(100% - 300px); 
+}
+
+/* ===================================== ANNOUNCEMENT CARD ================================= */
+
+.announcementCard {
+  padding: 16px;
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 8px;
+  width: 100%;
+}
+
+.announcementCard h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #856404;
+}
+
+.announcementCard p {
+  margin: 5px 0 0 0;
+  font-size: 16px;
+  color: #856404;
+}
+.announcementBullet {
+  list-style-type: disc; /* Adds a bullet point */
+  margin-left: 20px; /* Adjust the indentation of the bullet */
+}
+
+.announcementMessage {
+  margin: 0; /* Removes default margin for <p> tags */
+}
+
+/* Add this class for aligning the button */
+.announcementCardContent {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Allows the content to grow and push the button to the bottom */
+}
+
+.verificationMessage {
+  padding: 12px 16px;
+  background-color: #3C40C6; /* Blue background for unverified */
+  color: #ffffff;
+  border-radius: 8px;
+  margin-top: 8px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.verifiedMessage {
+  padding: 12px 16px;
+  background-color: #28A745; /* Green background for verified */
+  color: #ffffff;
+  border-radius: 8px;
+  margin-top: 8px;
+  text-align: center;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Spacing between text and icon */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.verifiedIcon {
+  width: 32px;
+  height: auto;
+  vertical-align: middle;
+}
+
+
+/* ============================================= DASHBOARD ====================================== */
+
+.dashboardContent{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px; 
+  margin-top: 16px;
+  z-index: 1;
+}
+.filters{
+  margin-top: 8px;
+}
+.filterDropdown{
+  border: none;
+  background: #5479f7;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fafafa;
+  padding: 4px 8px;
+  cursor: pointer;
+  margin-right: 4px;
+  margin-bottom: 8px;
+}
+
+.submittedGrades {
+  margin-top: 8px; /* Adjust as necessary */
+  font-size: 16px; /* Adjust font size as necessary */
+  color: #333; /* Change color as necessary */
+  font-weight: 600;
+}
+
+
+.dashboardContainers {
+  display: flex;
+  flex-wrap: wrap; 
+}
+
+.dashboardContainerSubjects,
+.dashboardContainerStudents,
+.dashboardContainerInstructors,
+.dashboardContainerActiveUsers {
+  flex: 1 1 50%; 
+  width: 100%; 
+  height: 220px;
+  border-radius: 32px;
+  position: relative;
+  padding-top: 32px;
+  margin-right: 32px;
+  transition: all .3s ease;
+  z-index: 1;
+}
+
+
+
+.dashboardContainerSubjects{
+  background-color: #5479f7;
+}
+.dashboardContainerStudents{
+  background-color: #00c60e;
+}
+.dashboardContainerInstructors{
+  background-color: #ff960c;
+}
+.dashboardContainerActiveUsers{
+  background-color: #e52d27;
+}
+
+.dashboardTop{
+  display: flex;
+  flex-direction: row;
+}
+
+.dashboardIcons{
+  width: 200px;
+  height: auto;
+}
+
+.dashboardDescription{
+  position: absolute;
+  right: 40px;
+  text-align: right;
+}
+
+.spanNum{
+  font-size: 64px;
+  font-weight: bold;
+}
+
+.spanLabel{
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.dashboardButtons {
+  position: absolute;
+  bottom: 0;
+  border-radius: 32px;
+  padding: 8px 16px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.dashboardButtons span{
+  font-size: 20px;
+  font-weight: bold;
+}
+.dashboardButtons:hover span{
+  text-decoration: underline;
+}
+
+.buttonIcons {
+  width: 80px;
+  height: auto;
+  vertical-align: middle;
+}
+
+#dashboardButtonSubjects{
+  border: 5px solid  #5479f7;
+}
+#dashboardButtonStudents{
+  border: 5px solid  #00c60e;
+}
+#dashboardButtonInstructors{
+  border: 5px solid  #ff960c;
+}
+#dashboardButtonActiveUsers{
+  border: 5px solid  #e52d27;
+}
+
+
+
+
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
+/* ============================================ MEDIA QUERIES ================================== */
+
+/* Mobile Styles (up to 500px) */
+@media (max-width: 500px) {
+  .mainContent {
+    width: calc(100% - 50px);
+    left: 50px; 
+  }
+
+  .dashboardContent {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .dashboardIcons {
+    width: 100px;
+    margin-left: 8px;
+  }
+
+  .spanNum {
+    font-size: 40px;
+  }
+
+  .spanLabel {
+    font-size: 20px;
+  }
+
+  .buttonIcons {
+    width: 40px;
+  }
+
+  .dashboardContainerSubjects,
+  .dashboardContainerStudents,
+  .dashboardContainerInstructors,
+  .dashboardContainerActiveUsers {
+    width: 100%; 
+    height: 150px;
+  }
+
+  .dashboardDescription {
+    right: 24px;
+    margin-top: -8px;
+  }
+
+  .greetingCard {
+    padding: 12px 16px;
+    margin-top: 16px;
+  }
+
+  .announcementCard {
+    padding: 12px;
+  }
+
+  .announcementCard h3 {
+    font-size: 18px;
+  }
+
+  .announcementCard p {
+    font-size: 14px;
+  }
+
+  .filterDropdown{
+    font-size: 10px;
+  }
+}
+
+/* Tablet Styles (501px to 1024px) */
+@media (min-width: 501px) and (max-width: 1024px) {
+  .mainContent {
+    width: calc(100% - 60px);
+    left: 60px; 
+  }
+
+  .dashboardContent {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .dashboardIcons {
+    width: 150px;
+  }
+
+  .spanNum {
+    font-size: 50px;
+  }
+
+  .spanLabel {
+    font-size: 24px;
+  }
+
+  .buttonIcons {
+    width: 60px;
+  }
+
+  .dashboardContainerSubjects,
+  .dashboardContainerStudents,
+  .dashboardContainerInstructors,
+  .dashboardContainerActiveUsers {
+    width: 100%; 
+    height: 200px;
+  }
+
+  .greetingCard {
+    padding: 16px 24px;
+    margin-top: 18px;
+  }
+
+  .announcementCard {
+    padding: 14px;
+  }
+
+  .announcementCard h3 {
+    font-size: 20px;
+  }
+
+  .announcementCard p {
+    font-size: 15px;
+  }
+}

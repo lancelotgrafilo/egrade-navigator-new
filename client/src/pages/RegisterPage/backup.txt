@@ -1,0 +1,237 @@
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Joi from 'joi';
+import passwordComplexity from 'joi-password-complexity';
+
+import eGradeLogo from '../../assets/images/eGradeLogo-nobg.png';
+import pageDivider from '../../assets/images/bottomwave.svg';
+import userIcon from '../../assets/icons/user-solid-24.png';
+import lockIcon from '../../assets/icons/lock-alt-solid-24.png';
+import emailLogo from '../../assets/icons/envelope-solid-24-black.png';
+
+import styleRegister from './registerPage.module.css';
+
+export function RegisterPage () {
+  const navigate = useNavigate();
+  const [error, setError] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [data, setData] = useState({
+    last_name: "",
+    first_name: "",
+    middle_name: "",
+    schoolID: "",
+    email: "",
+    password: ""
+  });
+
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsModalOpen(true);
+
+    const schema = Joi.object({
+      last_name: Joi.string().required().label("Last Name"),
+      first_name: Joi.string().required().label("First Name"),
+      middle_name: Joi.string().required().label("Middle Name"),
+      schoolID: Joi.string().required().label("School ID"),
+      email: Joi.string().email().required().label("Email"),
+      password: passwordComplexity().required().label("Password")
+    });
+
+    const { error: validationError } = schema.validate(data);
+    if (validationError) {
+      setError(validationError.details[0].message);
+      return;
+    }
+
+    try {
+      const url = "http://localhost:5000/api/students";
+      const response = await axios.post(url, data);
+      console.log("Response:", response.data);
+      navigate("/login");
+    } catch (error) {
+      console.error("Error:", error);
+      if (error.response && error.response.data.message) {
+        setError(error.response.data.message);
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
+    } finally {
+      setIsModalOpen(false);
+    }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  return (
+    <div className={styleRegister.loginPageContainer}>
+      <header className={styleRegister.header}>
+        <nav className={styleRegister.navBar}>
+          <img src={eGradeLogo} alt="eGrade Navigator" className={styleRegister.navLogo} />
+          <ul className={styleRegister.navUl}>
+            <li className={styleRegister.navLi}>
+              <Link to="/" className={styleRegister.navButton}>Home</Link>
+            </li>
+            <li className={styleRegister.navLi}>
+              <Link to="/#About" className={styleRegister.navButton}>About</Link>
+            </li>
+            <li>
+              <Link to="/login" className={styleRegister.login}>Login</Link>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <section className={styleRegister.homeSection} id='Home'>
+        <div className={styleRegister.homeContainer}>
+          <h1 className={styleRegister.homeH1}>
+            Welcome, <br/>
+            <span className={styleRegister.spanH1}>
+              Start <span className={styleRegister.successSpan}>Navigating</span><br/> Your Journey <br/> with us!
+            </span>
+          </h1>
+          <div className={styleRegister.loginContainer}>
+            <form onSubmit={handleSubmit}>
+              <h1>Register</h1>
+              <div className={styleRegister.inputBox}>
+                <input 
+                  type="text" 
+                  id='last_name' 
+                  name='last_name' 
+                  value={data.last_name}
+                  onChange={handleChange}
+                  placeholder=' ' 
+                  required 
+                  className={styleRegister.userInput}/> 
+                <img src={userIcon} alt="" />
+                <label htmlFor="last_name" className={styleRegister.inputLabelUser}>Last Name:</label>
+              </div>
+              <div className={styleRegister.inputBox}>
+                <input 
+                  type="text" 
+                  id='first_name' 
+                  name='first_name' 
+                  value={data.first_name}
+                  onChange={handleChange}
+                  placeholder=' ' 
+                  required 
+                  className={styleRegister.userPass}/> 
+                <img src={userIcon} alt="" />
+                <label htmlFor="first_name" className={styleRegister.inputLabelPass}>First Name:</label>
+              </div>
+              <div className={styleRegister.inputBox}>
+                <input 
+                  type="text" 
+                  id='middle_name' 
+                  name='middle_name'
+                  value={data.middle_name}
+                  onChange={handleChange}
+                  placeholder=' ' 
+                  required 
+                  className={styleRegister.userPass}/> 
+                <img src={userIcon} alt="" />
+                <label htmlFor="middle_name" className={styleRegister.inputLabelPass}>Middle Name:</label>
+              </div>
+              <div className={styleRegister.inputBox}>
+                <input 
+                  type="text" 
+                  id='schoolID' 
+                  name='schoolID' 
+                  value={data.schoolID}
+                  onChange={handleChange}
+                  placeholder=' ' 
+                  required 
+                  className={styleRegister.userInput}/> 
+                <img src={userIcon} alt="" />
+                <label htmlFor="schoolID" className={styleRegister.inputLabelUser}>School ID:</label>
+              </div>
+              <div className={styleRegister.inputBox}>
+                <input 
+                  type="email" 
+                  id='email' 
+                  name='email'
+                  value={data.email} 
+                  onChange={handleChange}
+                  placeholder=' ' 
+                  required 
+                  className={styleRegister.userPass}/> 
+                <img src={emailLogo} alt="" />
+                <label htmlFor="email" className={styleRegister.inputLabelPass}>Email Address:</label>
+              </div>
+              <div className={styleRegister.inputBox}>
+                <input 
+                  type="password" 
+                  id='password' 
+                  name='password' 
+                  value={data.password}
+                  onChange={handleChange}
+                  placeholder=' ' 
+                  required 
+                  className={styleRegister.userPass}/> 
+                <img src={lockIcon} alt="" />
+                <label htmlFor="password" className={styleRegister.inputLabelPass}>Password:</label>
+              </div>
+              <div className={styleRegister.inputBox}>
+                <input 
+                  type="password" 
+                  id='confirmPassword' 
+                  name='confirmPassword' 
+                  placeholder=' ' 
+                  required 
+                  className={styleRegister.userPass}/> 
+                <img src={lockIcon} alt="" />
+                <label htmlFor="confirmPassword" className={styleRegister.inputLabelPass}>Confirm Password:</label>
+              </div>
+              <div className={styleRegister.rememberForgot}>
+                <label>
+                  <input type="checkbox" required /> 
+                  I agree to the 
+                    <Link to='' className={styleRegister.termsConditions}>Terms and Conditions</Link>
+                  and have read the 
+                    <Link className={styleRegister.termsConditions}>Privacy Policy</Link>.
+                </label>
+              </div>
+
+              {error && <div className={styleRegister.errorMessage}>{error}</div>}
+
+              <button 
+                type='submit'
+                className={styleRegister.registerButton}
+              >
+                Register
+              </button>
+
+              <div className={styleRegister.register}>
+                <p>Already have an account? Login 
+                  <Link to='/login' className={styleRegister.registerBtn}> Here</Link> 
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div className={styleRegister.pageDivider}>
+          <img src={pageDivider} alt="wave" />
+        </div>
+      </section>
+
+      {isModalOpen && (
+        <div className={styleRegister.modalOverlay}>
+          <div className={styleRegister.modal}>
+            <h2>Email Confirmation</h2>
+            <p>Please enter the confirmation code sent to your email:</p>
+            <input type="text" className={styleRegister.confirmationInput} placeholder="Confirmation Code" />
+            <button className={styleRegister.confirmButton}>Confirm</button>
+            <button className={styleRegister.closeButton} onClick={closeModal}>Close</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+

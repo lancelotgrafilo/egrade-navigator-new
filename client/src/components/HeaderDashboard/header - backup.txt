@@ -1,0 +1,38 @@
+import styleHeaderDashboard from './headerDashboard.module.css';
+import notifBell from '../../assets/icons/bell.png';
+import bookmark from '../../assets/icons/bookmarkB.png';
+import darkMode from '../../assets/icons/darkMode.png';
+
+export function HeaderDashbaord(){
+  return(
+    <div className={styleHeaderDashboard.headerDashboardContainer}>
+      <div className={styleHeaderDashboard.dashboardHeader}>
+        <div className={styleHeaderDashboard.dashboardEntrance}>
+          <h1>Class Program Information</h1>
+        </div>
+        
+        <div className={styleHeaderDashboard.dashboardWelcome}>
+          <div className={styleHeaderDashboard.wrapper} data-number="1">
+            <a href="#">
+              <img src={darkMode} alt="" className={styleHeaderDashboard.darkMode}/>
+            </a>
+            <a href='#'>
+              <img src={notifBell} alt="bell" className={styleHeaderDashboard.bellIcon} />
+            </a>
+          </div>
+          
+        </div>
+      </div>
+      
+      <div className={styleHeaderDashboard.dashboardSpan}>
+        <span>
+          <img src={bookmark} className={styleHeaderDashboard.dashboardIconB}/>
+          Class Program Information
+        </span>
+      </div>
+
+      <hr className={styleHeaderDashboard.hr1}/>
+    </div>
+    
+  )
+}

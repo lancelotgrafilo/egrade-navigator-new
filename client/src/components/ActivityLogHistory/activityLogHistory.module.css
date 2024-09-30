@@ -1,0 +1,229 @@
+
+/* =====================================MAIN CONTENT ============================== */
+
+.mainContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+/* ============================================= DASHBOARD ====================================== */
+
+.dashboardContent{
+  position: relative;
+  width: 100%;  
+  margin-top: 16px;
+  z-index: 1;
+}
+.dashboardHeader{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: baseline;
+  text-align: left;
+  margin-bottom: 4px;
+}
+.dashboardEntrance{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+.dashboardEntrance h1{
+  font-size: 48px;
+}
+.dashboardEntrance span{
+  font-size: 32px;
+  margin-left: 24px;
+}
+
+.dashboardWelcome{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.wrapper{
+  width: 64px;
+  height: auto;
+  position: relative;
+}
+.bellIcon{
+  width: 100%;
+}
+.wrapper::after{
+  content: attr(data-number);
+  width: 20px;
+  height: auto;
+  background-color: rgb(228, 8, 8);
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 5px;
+  right: 0;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: all .25s;
+  border-radius: 50%;
+  position: absolute;
+}
+.wrapper:hover::after{
+  transform: translateY(0);
+}
+.wrapper:hover .bellIcon{
+  animation: shake 1s forwards;
+}
+
+@keyframes shake{
+  0%{
+    transform: rotate(15deg);
+  }
+  20%{
+    transform: rotate(-15deg);
+  }
+  30%{
+    transform: rotate(15deg);
+  }
+  50%{
+    transform: rotate(0);
+  }
+}
+
+.dashboardIconB{
+  width: 32px;
+  height: auto;
+  vertical-align: middle;
+  margin-right: 16px;
+}
+
+.dashboardSpan{
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  border-radius: 24px;
+  background-color: #caddff;
+  padding-left: 16px;
+}
+.dashboardSpan span{
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.hr1{
+  background-color: #5479f7;
+  width: 100%;
+  height: 5px;
+  margin-top: 8px;
+  border-radius: 3px;
+}
+
+
+
+/* ============================================== CONTENT ==================================== */
+/* Add this to your CSS */
+.tableContainer {
+  width: 100%;
+  overflow-x: auto; 
+}
+
+.classInfoTable {
+  width: 100%;
+  border-collapse: collapse; 
+}
+
+.classInfoTable th,
+.classInfoTable td {
+  border-bottom: 1px solid #5479f7; 
+  padding: 6px 8px; 
+  text-align: center; 
+}
+.classInfoTable th {
+  background-color: #f2f2f2; 
+  border-bottom: 3px solid #5479f7;
+  font-weight: bold; 
+}
+.classInfoTable tr{
+  background-color: #fafafa;
+}
+
+.classInfoTable td:first-child {
+  text-align: left;
+  padding-left: 16px; 
+  font-weight: 400;
+}
+
+.classInfoTable td:last-child {
+  text-align: right;
+  padding-right: 16px; 
+}
+
+
+.slider{
+  width: 32px;
+  height: auto;
+  vertical-align: middle;
+}
+
+.timestamp{
+  background-color: #3b3b3b;
+  color: #fafafa;
+  padding: 4px 6px;
+  border-radius: 16px;
+}
+
+
+
+
+
+
+
+
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* @media (max-width: 1200px) {
+  .dashboardIcons {
+    width: 150px;
+  }
+  .spanNum {
+    font-size: 48px;
+  }
+  .spanLabel {
+    font-size: 24px;
+  }
+  .buttonIcons {
+    width: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboardContent {
+    grid-template-columns: 1fr;
+  }
+  .dashboardIcons {
+    width: 100px;
+  }
+  .spanNum {
+    font-size: 32px;
+  }
+  .spanLabel {
+    font-size: 20px;
+  }
+  .buttonIcons {
+    width: 40px;
+  }
+} */

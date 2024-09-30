@@ -1,0 +1,443 @@
+/* ======================================= NAVIGATION BAR ======================================== */
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navBar {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.navUl {
+  display: flex;
+  list-style: none;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.navLi,
+#navLi {
+  list-style-type: none;
+  margin-right: 32px;
+  animation: slideTop 1s ease forwards;
+  animation-delay: calc(0.2s * var(--i));
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .3s ease;
+}
+
+
+.navButton {
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 8px 24px;
+  border-radius: 24px;
+  transition: all 0.3s ease;
+}
+
+.navButton:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #1b4a9c;
+  transform: translateY(-5px);
+}
+
+.login {
+  font-weight: 600;
+  font-size: 24px;
+  background-color: var(--button-color);
+  color: #fafafa;
+  border-radius: 24px;
+  padding: 8px 24px;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.login:hover {
+  cursor: pointer;
+  background-color: #6e8ec5;
+}
+
+.login:active {
+  background-color: #6e8ec5;
+}
+
+.navLogo {
+  width: 250px;
+  height: auto;
+  margin-left: 5%;
+  animation: slideRight 1s ease forwards;
+}
+
+/* ============================================= CONTENT ======================================== */
+.homeSection {
+  height: 85.5vh;
+  position: relative;
+  background: url('../../assets/images/lefthexagon.svg') no-repeat left top;
+  background-size: contain;
+  background-attachment: fixed;
+  animation: slideRight 1s ease forwards;
+  z-index: 1;
+}
+
+.homeContainer {
+  height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+.homeh1 {
+  text-align: left;
+  font-size: 70px;
+  line-height: 1.1;
+  margin-top: -200px;
+  margin-left: 5%;
+  max-width: 150%;
+  height: auto;
+  animation: slideRight 1.2s ease forwards;
+  opacity: 0;
+  z-index: 2;
+}
+
+.successSpan {
+  color: #1b4a9c;
+}
+
+.homeImage {
+  max-width: 550px;
+  min-width: 100px;
+  max-height: 100%;
+  height: auto;
+  margin-top: -200px;
+  margin-right: 5%;
+  animation: slideTop 1s ease forwards;
+  z-index: 2;
+}
+
+.pageDividerBottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.pageDividerBottom img {
+  width: 100%;
+  height: auto;
+  margin-left: -1px;
+  animation: slideTop 1s ease forwards;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ================================== ABOUT ======================================== */
+.homeAboutSection {
+  height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+.aboutContainer {
+  width: 100%; 
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; 
+  margin-top: -5px;
+  z-index: 2;
+}
+
+.aboutH1 {
+  text-align: center;
+  margin-top: 100px;
+  font-size: 32px;
+}
+
+.pageDividerTop {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  animation: slideBottom 1s ease forwards;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.pageDividerTop img {
+  width: 100%;
+  height: auto;
+  margin-left: -1px;
+  margin-top: -1px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.aboutLogoContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center; 
+  gap: 10rem; 
+  width: 100%; 
+}
+
+
+.logoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(130, 198, 255, 0.5), 0 6px 20px rgba(130, 198, 255, 0.3);
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.icon {
+  max-width: 150px;
+  min-width: 100px;
+  height: auto;
+}
+
+h2 {
+  text-align: center;
+  font-size: 24px;
+}
+
+.aboutContent {
+  width: auto;
+  padding: 0 5%;
+  margin-top: 100px;
+}
+
+.aboutContent p {
+  font-size: 24px;
+  text-align: center;
+}
+
+.aboutLogoContainer,
+.aboutContent {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.animate {
+  opacity: 1;
+  transform: translateY(0);
+  animation: slideTop 1s forwards;
+}
+
+/* ============================================= FOOTER ========================================== */
+footer {
+  width: 100%;
+  height: 150px;
+  background-color: #3c3c3b;
+}
+
+.footerContainer {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 200px;
+}
+
+.eLogo {
+  width: 190px;
+  height: auto;
+}
+
+footer p {
+  color: #fafafa;
+  margin: 5px 0;
+  text-align: center;
+}
+
+.emailIcon {
+  width: 32px;
+  height: auto;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.evaluation{
+  color: white;
+}
+
+.footers {
+  padding: 16px 8px;
+}
+
+/* KEYFRAMES ANIMATION */
+@keyframes slideRight {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideTop {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideBottom {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+@media (min-width: 100px) and (max-width: 500px) {
+
+  .navBar{
+    height: 80px;
+    padding: 8px 16px;
+  }
+  .navLogo{
+    width: 150px;
+    margin-left: 0;
+  }
+
+  .navUl{
+    margin-right: 0;
+  }
+
+  .navLi,
+  #navLi{
+    margin-right: -8px;
+  }
+
+  .navButton,
+  .login{
+    font-size: 12px;
+    margin-right: 0;
+  }
+  .login{
+    padding: 8px 12px;
+  }
+
+  .homeh1{
+    font-size: 24px;
+    margin-top: -80px;
+  }
+  .homeImage {
+    max-width: 220px;
+    min-width: 50px;
+    max-height: 150px; /* Adjust the maximum height for small screens */
+    height: auto;
+    margin-top: -80px;
+  }
+
+  .homeContainer{
+    height: 30dvh;
+  }
+
+  .homeSection{
+    height: 25dvh;
+  }
+  
+
+  .homeAboutSection{
+    height: 560px;
+  }
+
+  .aboutH1{
+    margin-top: 40px;
+    font-size: 24px;
+  }
+
+  .aboutLogoContainer{
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  .logoContainer{
+    width: 170px;
+    height: 120px;
+  }
+
+  .icon{
+    width: 100px;
+    height: auto;
+  }
+
+  h2{
+    font-size: 14px;
+    margin-top: 8px;
+  }
+
+  .aboutContent p{
+    font-size: 12px;
+  }
+
+  
+  .footerContainer{
+    gap: 10px;
+  }
+
+  .eLogo{
+    width: 100px;
+  }
+  footer p{
+    font-size: 12px;
+  }
+
+  .emailIcon{
+    width: 24px;
+  }
+
+  .evaluation{
+    font-size: 14px;
+  }
+}
+
+

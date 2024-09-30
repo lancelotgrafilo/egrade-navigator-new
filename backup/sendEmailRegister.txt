@@ -1,0 +1,59 @@
+const nodemailer = require('nodemailer');
+
+const sendEmailRegister = async (req, res) => {
+  const { email } = req.body;
+
+  // Generate a 6-digit confirmation code
+  const confirmationCode = Math.floor(100000 + Math.random() * 900000).toString();
+
+  try {
+    // Create a Nodemailer transporter
+    let transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER, // replace with your email or use environment variables
+        pass: process.env.EMAIL_PASS  // replace with your password or use environment variables
+      }
+    });
+
+    // Send mail with defined transport object
+    let info = await transporter.sendMail({
+      from: '"eGrade Navigator" <egradenavigator@gmail.com>',
+      to: email,
+      subject: 'Welcome to eGrade Navigator! Confirm Your Email',
+      text: `
+        Dear User,
+
+        Thank you for registering with eGrade Navigator!
+
+        To complete your registration, please use the following confirmation code to verify your email address:
+        
+        Confirmation Code: ${confirmationCode}
+
+        If you did not register for an account, please disregard this email or contact our support team immediately.
+
+        We're excited to have you on board!
+
+        Best regards,
+        The eGrade Navigator Team
+      `,
+      html: `
+        <p>Dear User,</p>
+        <p>Thank you for registering with eGrade Navigator!</p>
+        <p>To complete your registration, please use the following confirmation code to verify your email address:</p>
+        <p><strong>Confirmation Code: ${confirmationCode}</strong></p>
+        <p>If you did not register for an account, please disregard this email or contact our support team immediately.</p>
+        <p>We're excited to have you on board!</p>
+        <p>Best regards,<br>The eGrade Navigator Team</p>
+      `
+    });
+
+    console.log('Message sent: %s', info.messageId);
+    res.status(200).json({ message: "Email sent successfully", confirmationCode });
+  } catch (error) {
+    console.error('Error sending email:', error);
+    res.status(500).json({ message: "Failed to send email", error });
+  }
+};
+
+module.exports = { sendEmailRegister };

@@ -1,0 +1,126 @@
+import eGradeLogo from '../../assets/images/eGradeLogo-nobg.png';
+import styleLoginPage from './loginPage.module.css';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import pageDivider from '../../assets/images/bottomwave.svg';
+import userIcon from '../../assets/icons/user-solid-24.png';
+import lockIcon from '../../assets/icons/lock-alt-solid-24.png';
+import axios from 'axios';
+
+export function LoginPage() {
+  const [error, setError] = useState("");
+  const [data, setData] = useState({
+    email: "",
+    password: ""
+  })
+  const navigate = useNavigate();
+
+ 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try{
+      const url = "http://localhost:5000/api/login";
+      const {data: res} = await axios.post(url, data);
+      localStorage.setItem("token", res.data);
+      navigate('/admin')
+      
+    } catch (error){
+      if (error.response && error.response.status === 401) {
+        setError("Invalid email or password. Please try again.");
+      } else {
+        setError("An unexpected error occurred. Please try again later.");
+      }
+    }
+
+  }
+  
+
+  const handleChange = ({currentTarget: input}) => {
+    setData({...data, [input.name]: input.value})
+  }
+
+  return (
+    <>
+      <div className={styleLoginPage.loginPageContainer}>
+        <header className={styleLoginPage.header}>
+          <nav className={styleLoginPage.navBar}>
+            <img src={eGradeLogo} alt="eGrade Navigator" className={styleLoginPage.navLogo} />
+            <ul className={styleLoginPage.navUl}>
+              <li className={styleLoginPage.navLi}>
+                <Link to="/" className={styleLoginPage.navButton}>Home</Link>
+              </li>
+              <li className={styleLoginPage.navLi}>
+                <Link to="/#About" className={styleLoginPage.navButton}>About</Link>
+              </li>
+            </ul>
+          </nav>
+        </header>
+
+        <section className={styleLoginPage.homeSection} id='Home'>
+          <div className={styleLoginPage.homeContainer}>
+            <h1 className={styleLoginPage.homeh1}>
+              Welcome, <br /> Join us Navigate <br /> our <span className={styleLoginPage.successSpan}>Success</span>!
+            </h1>
+
+            <div className={styleLoginPage.loginContainer}>
+              <form onSubmit={handleSubmit}>
+                <div className={styleLoginPage.gradeLogo}>
+                  <img src={eGradeLogo} alt="eGrade Navigator" className={styleLoginPage.formLogo} />
+                </div>
+
+                <h1>Login</h1>
+
+                <div className={styleLoginPage.inputBox}>
+                  <input
+                    type="email"
+                    id='email'
+                    name='email'
+                    value={data.email} 
+                    onChange={handleChange}
+                    placeholder=' '
+                    required
+                    className={styleLoginPage.userInput}
+                  />
+                  <img src={userIcon} alt="" />
+                  <label htmlFor="email" className={styleLoginPage.inputLabelUser}>Email:</label>
+                </div>
+                <div className={styleLoginPage.inputBox}>
+                  <input
+                    type="password"
+                    id='password'
+                    name='password'
+                    value={data.password} 
+                    onChange={handleChange}
+                    placeholder=' '
+                    required
+                    className={styleLoginPage.userPass}
+                  />
+                  <img src={lockIcon} alt="" />
+                  <label htmlFor="password" className={styleLoginPage.inputLabelPass}>Password:</label>
+                </div>
+
+                <div className={styleLoginPage.rememberForgot}>
+                  <label><input type="checkbox" /> Remember me</label>
+                  <Link to='/forgotPassword' className={styleLoginPage.forgotPass}>Forgot password?</Link>
+                </div>
+
+                <button type="submit" className={styleLoginPage.loginButton}>Login</button>
+
+                <div className={styleLoginPage.register}>
+                  <p>Don&apos;t have an account?
+                    <Link to='/register' className={styleLoginPage.registerBtn}> Register</Link>
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div className={styleLoginPage.pageDivider}>
+            <img src={pageDivider} alt="wave" />
+          </div>
+        </section>
+      </div>
+    </>
+  );
+}

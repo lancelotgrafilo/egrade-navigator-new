@@ -1,0 +1,355 @@
+/* ===================================== MAIN CONTENT ============================== */
+.mainContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 8px; /* Added padding for spacing */
+  background-color: #f9f9f9; /* Light background for main content */
+}
+
+/* ===================================== ANNOUNCEMENT CARD ============================== */
+.announcementCard {
+  padding: 16px;
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 16px;
+  width: 100%;
+}
+
+.announcementCard h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #856404;
+}
+
+.announcementCard p {
+  margin: 5px 0 0 0;
+  font-size: 16px;
+  color: #856404;
+}
+
+/* Verification Messages */
+.verificationMessage {
+  padding: 12px 16px;
+  background-color: #3C40C6; /* Blue background for unverified */
+  color: #ffffff;
+  border-radius: 8px;
+  margin-top: 8px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.verifiedMessage {
+  padding: 12px 16px;
+  background-color: #28A745; /* Green background for verified */
+  color: #ffffff;
+  border-radius: 8px;
+  margin-top: 8px;
+  text-align: center;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Spacing between text and icon */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.verifiedIcon {
+  width: 32px;
+  height: auto;
+  vertical-align: middle;
+}
+
+/* ============================================= DASHBOARD ================================ */
+.dashboardContent {
+  position: relative;
+  width: 100%;  
+  margin-top: 16px;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 20px; /* Gap between elements */
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly; /* Even spacing for children */
+}
+
+.yearContainer {
+  display: flex;
+  flex-direction: column; /* Arrange items vertically */
+}
+
+/* Cards */
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  margin-bottom: 12px;
+  width: 100%;
+  max-width: 300px; /* Restrict max width for better layout */
+  text-align: left;
+  transition: transform 0.2s ease-in-out; /* Smooth hover effect */
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Raise card on hover */
+}
+
+.subjectCode {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.subjectTitle {
+  font-size: 16px;
+  color: #555555;
+}
+
+/* Grade Table */
+.gradeTable {
+  width: 100%;
+  margin-top: 1em;
+  border-collapse: collapse; /* Ensures borders are collapsed into a single border */
+  overflow: auto;
+}
+
+.gradeTable th,
+.gradeTable td {
+  padding: 0.5em;
+  text-align: left; /* Aligns text to the left */
+  border: 1px solid #ccc; /* Light border around cells */
+}
+
+.gradeTable th {
+  background-color: #f5f5f5; /* Light gray background for headers */
+  font-weight: bold; /* Makes header text bold */
+}
+
+.gradeTable tr:nth-child(even) {
+  background-color: #f9f9f9; /* Alternating row colors for readability */
+}
+
+.gradeTable tr:hover {
+  background-color: #f1f1f1; /* Highlight row on hover */
+}
+
+/* Remarks */
+.remarks {
+  font-weight: bold;
+  padding: 8px;
+  text-align: center; /* Center text */
+}
+
+.pass {
+  color: green !important; /* Green text for passing grades */
+}
+
+.fail,
+.failGrade {
+  color: red !important; /* Red text for failing grades */
+}
+
+/* Greeting Card */
+.greetingCard {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.greetingCard h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.greetingCard p {
+  margin: 5px 0 0 0;
+  font-size: 16px;
+  color: #555;
+  text-align: center; /* Center text */
+}
+
+/* ===================================== MODAL ========================================= */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure modal overlays other elements */
+}
+
+.modalContent {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 600px; /* Max width for modal */
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.modalTitle {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer; /* Pointer cursor for clickable elements */
+}
+
+.modalDetails {
+  font-size: 16px;
+}
+
+/* Close Modal */
+.closeModal {
+  cursor: pointer;
+  float: right; /* Align close button to the right */
+}
+
+/* Filter Dropdown */
+.filterDropdown {
+  border: none;
+  background: #5479f7; /* Primary button color */
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fafafa;
+  padding: 4px 8px; /* Padding for dropdown */
+  cursor: pointer; /* Pointer cursor */
+  margin-right: 4px;
+  margin-bottom: 8px; /* Space below the dropdown */
+}
+
+/* Loader Styles */
+.loader {
+  vertical-align: middle;
+  width: 20px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 4px solid #1b4a9c; /* Border color for loader */
+  animation: l20-1 0.8s infinite linear alternate,
+             l20-2 1.6s infinite linear;
+}
+
+/* Loader Animation Keyframes */
+@keyframes l20-1 {
+  0% { clip-path: polygon(50% 50%, 0 0, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%); }
+  12.5% { clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 0%, 100% 0%, 100% 0%); }
+  25% { clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 100% 100%, 100% 100%); }
+  50% { clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 50% 100%, 0 100%); }
+  62.5% { clip-path: polygon(50% 50%, 100% 0, 100% 0, 100% 0, 100% 100%, 50% 100%, 0 100%); }
+  75% { clip-path: polygon(50% 50%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 50% 100%, 0 100%); }
+  100% { clip-path: polygon(50% 50%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 0 100%); }
+}
+
+@keyframes l20-2 { 
+  0% { transform: scaleY(1) rotate(0deg); }
+  49.99% { transform: scaleY(1) rotate(135deg); }
+  50% { transform: scaleY(-1) rotate(0deg); }
+  100% { transform: scaleY(-1) rotate(-135deg); }
+}
+
+/* ===================================== ANIMATIONS ================================ */
+@keyframes slideRight {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ===================================== MEDIA QUERIES ================================ */
+@media (max-width: 768px) { /* For tablets and mobile devices */
+  .cardContainer {
+    flex-direction: column; /* Stack cards in a column */
+    align-items: center; /* Center align cards */
+  }
+  
+  .card {
+    width: 90%; /* Full width for smaller screens */
+    max-width: none; /* Remove max width for better responsiveness */
+  }
+
+  .greetingCard,
+  .announcementCard {
+    width: 90%; /* Full width for cards on smaller screens */
+  }
+  
+  .searchInput {
+    width: 100%; /* Full width input for smaller screens */
+  }
+
+  .searchBtn,
+  .addBtn {
+    font-size: 14px; /* Adjust button font size for smaller screens */
+  }
+
+  .filterDropdown{
+    font-size: 11px;
+    padding: 4px 6px;
+  }
+
+  .searchBtn img,
+  .addBtn img {
+    width: 20px; /* Adjust button image size */
+  }
+  
+  .gradeTable th,
+  .gradeTable td {
+    font-size: 13px;
+  }
+ 
+
+}
+
+@media (max-width: 500px) { /* For mobile phones */
+  .card {
+    width: 100%; /* Full width for cards on mobile */
+  }
+
+  .greetingCard,
+  .announcementCard {
+    width: 100%; /* Full width for greeting and announcement cards on mobile */
+  }
+
+  .searchInput {
+    width: 100%; /* Adjusted input width for small screens */
+  }
+
+  .gradeTable th,
+  .gradeTable td {
+    font-size: 12px;
+  }
+}

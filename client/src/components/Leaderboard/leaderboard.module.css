@@ -1,0 +1,124 @@
+/* =====================================MAIN CONTENT ============================== */
+
+.mainContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+/* ============================================= DASHBOARD ====================================== */
+
+.dashboardContent{
+  position: relative;
+  width: 100%;  
+  margin-top: 16px;
+  z-index: 1;
+}
+
+/* ================================== SEARCH BAR ================== */
+.searchBar{
+  width: 350px;;
+  display: flex;
+  flex-direction: row;
+  margin-top: -8px;
+  margin-bottom: 8px;
+}
+.searchInput{
+  width: 100%;
+  height: 32px;
+  border-radius: 16px;
+  border: solid 2px #5479f7;
+  padding-left: 8px;
+  transition: all .2s ease;
+}
+.searchInput:focus {
+  outline: none;
+  border-color: #6285f8; /* Slightly darker shade on focus */
+}
+
+.filterDropdown{
+  border: none;
+  background: #5479f7;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fafafa;
+  padding: 4px 8px;
+  cursor: pointer;
+  margin-right: 4px;
+  margin-bottom: 8px;
+}
+
+
+
+/* ============================================== TABLE ==================================== */
+
+.tableContainer {
+  width: 100%;
+  overflow-x: auto; 
+}
+
+.classInfoTable {
+  width: 100%;
+  border-collapse: collapse; 
+}
+
+.classInfoTable th,
+.classInfoTable td {
+  border-bottom: 1px solid #5479f7; 
+  padding: 6px 8px; 
+  text-align: center; 
+}
+.classInfoTable th {
+  background-color: #f2f2f2; 
+  border-bottom: 3px solid #5479f7;
+  font-weight: bold; 
+}
+.classInfoTable tr{
+  background-color: #fafafa;
+}
+
+/* =================================================== Leaderboard ======================================= */
+
+.first {
+  background: linear-gradient(to left, #fff, gold);
+}
+.second {
+  background: linear-gradient(to left, #fff, silver);
+}
+.third {
+  background: linear-gradient(to left, #fff, #cd7f32);
+}
+.regular{
+  background-color: #fff;
+}
+
+/* Keyframes for slide-in animation */
+@keyframes slideRight {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ==================================== MEDIA QUERIES ==================================== */
+@media (min-width: 100px) and (max-width: 500px) {
+  .searchInput{
+    width: 230px;
+  }
+
+  .searchBtn{
+    font-size: 12px;
+    padding: 8px 16px 4px 8px;
+  }
+
+  .searchBtn img{
+    width: 24px;
+  }
+}

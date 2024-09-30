@@ -1,0 +1,694 @@
+import styleSettings from './settings.module.css';
+
+import { useState } from "react";
+import { createRipple } from '../../utils/effects/ripple'
+import { toast } from 'react-toastify'
+
+import useAdminSubmit from "../../utils/hooks/usePostAdminSubmit";
+import useCollegeSubmit from '../../utils/hooks/usePostCollegeSubmit';
+import useFacultySubmit from '../../utils/hooks/facultyStaffHooks/usePostFacultySubmit';
+import useRegistrarSubmit from '../../utils/hooks/useRegistrarSubmit';
+import useEmailConfirmReg from '../../utils/hooks/usePostEmailConfirmReg';
+
+export function Settings() {
+  
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [isAdminModalOpen, setAdminModalOpen] = useState(false);
+  const [isCollegeModalOpen, setCollegeModalOpen] = useState(false);
+  const [isFacultyModalOpen, setFacultyModalOpen] = useState(false);
+  const [isRegistrarModalOpen, setRegistrarModalOpen] = useState(false);
+  const [submissionType, setSubmissionType] = useState(null);
+
+  const { dataAdmin, handleChangeAdmin, handleSubmitAdmin, resetAdminForm, isAdminLoading } = useAdminSubmit();
+  const { dataCollege, handleChangeCollege, handleSubmitCollegeStaff, resetCollegeForm, isCollegeStaffLoading } = useCollegeSubmit();
+  const { dataFaculty, handleChangeFaculty, handleSubmitFaculty, resetFacultyForm, isFacultyStaffLoading } = useFacultySubmit();
+  const { dataRegistrar, handleChangeRegistrar, handleSubmitRegistrarStaff, resetRegistrarForm, isRegistrarStaffLoading } = useRegistrarSubmit();
+
+  const {
+    dataEmail,
+    handleChangeEmail,
+    handleSubmitEmail,
+    enteredCode,
+    handleChangeCode,
+    isCodeValid,
+    resetCode,
+    isCooldownActive,
+    cooldownTime,
+    isLoading
+  } = useEmailConfirmReg();
+ 
+
+  const handleSendCode = (e) => {
+    createRipple(e, styleSettings);
+    handleSubmitEmail({ preventDefault: () => {} });
+  };
+  
+
+  const handleSave = async (e) => {
+    e.preventDefault();
+    try {
+      // Handle data submission based on type
+      switch (submissionType) {
+        case 'admin':
+          await handleSubmitAdmin();
+          resetAdminForm();
+          break;
+        case 'college':
+          await handleSubmitCollegeStaff();
+          resetCollegeForm();
+          break;
+        case 'faculty':
+          await handleSubmitFaculty();
+          resetFacultyForm();
+          break;
+        case 'registrar':
+          await handleSubmitRegistrarStaff();
+          resetRegistrarForm();
+          break;
+        default:
+          toast.warn('Unknown submission type');
+          return; // Exit early if the submission type is unknown
+      }
+
+      resetCode();
+    } catch (err) {
+
+      console.error('Error during save process:', err);
+      toast.error('Error during save process:', err);
+      
+    } 
+    
+  };
+  
+  
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleAddAdminClick = () => {
+    setSubmissionType('admin');
+    setAdminModalOpen(true);
+  };
+
+  const handleAddCollegeClick = () => {
+    setSubmissionType('college');
+    setCollegeModalOpen(true);
+  };
+
+  const handleAddFacultyClick = () => {
+    setSubmissionType('faculty');
+    setFacultyModalOpen(true);
+  };
+
+  const handleAddRegistrarClick = () => {
+    setSubmissionType('registrar');
+    setRegistrarModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setAdminModalOpen(false);
+    setCollegeModalOpen(false);
+    setFacultyModalOpen(false);
+    setRegistrarModalOpen(false);
+
+    resetCode();
+    // Reset specific form states
+    if (submissionType === 'admin') {
+      // Reset admin form fields
+      resetAdminForm();
+    } else if (submissionType === 'college') {
+      // Reset college form fields
+      resetCollegeForm();
+    } else if (submissionType === 'faculty') {
+      // Reset faculty form fields
+      resetFacultyForm();
+    } else if (submissionType === 'registrar') {
+      // Reset registrar form fields
+      resetRegistrarForm();
+    }
+  };
+
+  const handleChangeFacultyWithValidation = (e) => {
+    if (e.target.name === 'contact_number') {
+      const value = e.target.value;
+      if (value.length > 11) {
+        toast.warn('Contact number must be exactly 11 digits.');
+        return;
+      }
+    }
+    handleChangeFaculty(e);
+  };
+
+  return (
+    <div className={styleSettings.mainContainer}>
+      
+      <div className={styleSettings.dashboardContent}>
+        <div className={styleSettings.addNewUserContainer}>
+          <h2>Add New User</h2>
+          <div className={styleSettings.btnContainer}>
+            <button type='button' className={styleSettings.addNewUserBtn} onClick={handleAddAdminClick}>
+              Admin
+            </button>
+            <button type='button' className={styleSettings.addNewUserBtn} onClick={handleAddCollegeClick}>
+              College Staff
+            </button>
+            <button type='button' className={styleSettings.addNewUserBtn} onClick={handleAddFacultyClick}>
+              Faculty Staff
+            </button>
+            <button type='button' className={styleSettings.addNewUserBtn} onClick={handleAddRegistrarClick}>
+              Registrar Staff
+            </button>
+          </div>
+        </div>
+
+        <div className={styleSettings.passwordContainer}>
+          <form onSubmit={(e) => e.preventDefault()} className={styleSettings.formContainer}>
+            <label htmlFor="currentPassword">Current Password:</label>
+            <input 
+              type={showPassword ? 'text' : 'password'} 
+              id='currentPassword' 
+            />
+            <label htmlFor="newPassword">New Password:</label>
+            <input 
+              type={showPassword ? 'text' : 'password'} 
+              id='newPassword' 
+            />
+            <label htmlFor="confirmPassword">Confirm Password:</label>
+            <input 
+              type={showPassword ? 'text' : 'password'} 
+              id='confirmPassword' 
+            />
+            <div className={styleSettings.showPass}>
+              <input 
+                type="checkbox" 
+                id="showPassword" 
+                checked={showPassword} 
+                onChange={togglePasswordVisibility} 
+              />
+              <label htmlFor="showPassword">Show Passwords</label>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+      {isAdminModalOpen && 
+        <div className={styleSettings.modalOverlay}>
+          <div className={styleSettings.modal}>
+            <h2>Add New Admin</h2>
+            <form onSubmit={handleSave}>
+              <div className={styleSettings.editInput}>
+                <label>Email:</label>
+                <div className={styleSettings.inputWithButton}>
+                  <input 
+                    id='email' 
+                    name='email'
+                    type='email'  
+                    className={styleSettings.editField} 
+                    value={dataAdmin.email || dataEmail.email}
+                    onChange={(e) => {
+                      handleChangeAdmin(e);
+                      handleChangeEmail(e);
+                    }}
+                    required
+                  />
+                  <button 
+                    type="button" 
+                    className={styleSettings.sendCode}
+                    onClick={handleSendCode}
+                    disabled={isCooldownActive || isLoading}
+                  >
+                    {isLoading ? (
+                        <div className={styleSettings.loader}></div> 
+                      ) : isCooldownActive ? (
+                        `PLease wait ${Math.floor(cooldownTime / 60)}:${(cooldownTime % 60).toString().padStart(2, "0")}` 
+                      ) : (
+                        "Send Code"
+                      )
+                    }
+                  </button>
+                </div>
+              </div>
+              
+              <div className={styleSettings.editInput}>
+                <label className={styleSettings.codeRow}>Please Enter Code: 
+                {isCodeValid === true && <p className={styleSettings.success} style={{ color: 'green'}}>Code is correct</p>}
+                {isCodeValid === false && <p className={styleSettings.error} style={{ color: 'red' }}>Code is incorrect</p>}
+                </label>
+                <input 
+                  type='number' 
+                  className={styleSettings.editField}
+                  value={enteredCode}
+                  onChange={handleChangeCode}
+                  required
+                />
+              </div>
+              
+              <div className={styleSettings.editInput}>
+                <label>Last Name:</label>
+                <input 
+                  type='text' 
+                  className={styleSettings.editField}
+                  id='last_name' 
+                  name='last_name'
+                  value={dataAdmin.last_name}
+                  onChange={handleChangeAdmin}
+                  required
+                />
+              </div>
+
+              <div className={styleSettings.editInput}>
+                <label>First Name:</label>
+                <input 
+                  type='text' 
+                  className={styleSettings.editField}
+                  id='first_name' 
+                  name='first_name'
+                  value={dataAdmin.first_name}
+                  onChange={handleChangeAdmin}
+                  required
+                />
+              </div>
+
+              <div className={styleSettings.editInput}>
+                <label>Middle Name:</label>
+                <input 
+                  type='text' 
+                  className={styleSettings.editField}
+                  id='middle_name' 
+                  name='middle_name'
+                  value={dataAdmin.middle_name}
+                  onChange={handleChangeAdmin}
+                  required
+                />
+              </div>
+
+              <div className={styleSettings.btnRow}>
+                <button type="button" className={styleSettings.cancelBtn} onClick={handleCloseModal}>Close</button>
+                <button 
+                  type="submit" 
+                  className={styleSettings.saveBtn}
+                  onClick={(e) => createRipple(e, styleSettings)}
+                  disabled={!isCodeValid || isAdminLoading}
+                >
+                  {isAdminLoading ? (
+                      <div className={styleSettings.loader}></div> 
+                    ) : (
+                      "Save"
+                    )
+                  }
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      }
+
+      {isCollegeModalOpen && 
+        <div className={styleSettings.modalOverlay}>
+          <div className={styleSettings.modal}>
+            <h2>Add New College Staff</h2>
+            <form onSubmit={handleSave}>
+              <div className={styleSettings.editInput}>
+                <label>Email:</label>
+                <div className={styleSettings.inputWithButton}>
+                  <input 
+                    id='email' 
+                    name='email'
+                    type='email' 
+                    className={styleSettings.editField} 
+                    value={dataCollege.email || dataEmail.email}
+                    onChange={(e)=> {
+                      handleChangeCollege(e);
+                      handleChangeEmail(e);
+                    }}
+                    required 
+                  />
+                  <button 
+                    type="button" 
+                    className={styleSettings.sendCode}
+                    onClick={handleSendCode}
+                    disabled={isCooldownActive || isLoading}
+                  >
+                    {isLoading ? (
+                        <div className={styleSettings.loader}></div> 
+                      ) : isCooldownActive ? (
+                        `PLease wait ${Math.floor(cooldownTime / 60)}:${(cooldownTime % 60).toString().padStart(2, "0")}` 
+                      ) : (
+                        "Send Code"
+                      )
+                    }
+                  </button>
+                </div>
+              </div>
+              
+              <div className={styleSettings.editInput}>
+                <label className={styleSettings.codeRow}>Please Enter Code:
+                  {isCodeValid === true && <p className={styleSettings.success} style={{ color: 'green'}}>Code is correct</p>}
+                  {isCodeValid === false && <p className={styleSettings.error} style={{ color: 'red' }}>Code is incorrect</p>}
+                </label>
+                <input 
+                  type='number' 
+                  className={styleSettings.editField}
+                  value={enteredCode}
+                  onChange={handleChangeCode}
+                  required
+                />
+              </div>
+
+              <div className={styleSettings.editInput}>
+                <label>Last Name:</label>
+                <input 
+                  type='text' 
+                  className={styleSettings.editField}
+                  id='last_name' 
+                  name='last_name'
+                  value={dataCollege.last_name}
+                  onChange={handleChangeCollege}
+                  required 
+                />
+              </div>
+
+              <div className={styleSettings.editInput}>
+                <label>First Name:</label>
+                <input 
+                  type='text' 
+                  className={styleSettings.editField}
+                  id='first_name' 
+                  name='first_name'
+                  value={dataCollege.first_name}
+                  onChange={handleChangeCollege}
+                  required 
+                />
+              </div>
+
+              <div className={styleSettings.editInput}>
+                <label>Middle Name:</label>
+                <input 
+                  type='text' 
+                  className={styleSettings.editField}
+                  id='middle_name' 
+                  name='middle_name'
+                  value={dataCollege.middle_name}
+                  onChange={handleChangeAdmin}
+                  required
+                />
+              </div>
+
+              <div className={styleSettings.btnRow}>
+                <button type="button" className={styleSettings.cancelBtn} onClick={handleCloseModal}>Close</button>
+                <button 
+                  type="submit" 
+                  className={styleSettings.saveBtn}
+                  onClick={(e) => createRipple(e, styleSettings)}
+                  disabled={!isCodeValid || isCollegeStaffLoading}
+                >
+                  {isCollegeStaffLoading ? (
+                      <div className={styleSettings.loader}></div> 
+                    ) : (
+                      "Save"
+                    )
+                  }
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      }
+
+        {isFacultyModalOpen && 
+          <div className={styleSettings.modalOverlay}>
+            <div className={styleSettings.modal}>
+              <h2>Add New Faculty Staff</h2>
+              <form onSubmit={handleSave}>
+                <div className={styleSettings.editInput}>
+                  <label>Email:</label>
+                  <div className={styleSettings.inputWithButton}>
+                    <input 
+                      id='email' 
+                      name='email'
+                      type='email' 
+                      className={styleSettings.editField} 
+                      value={dataFaculty.email || dataEmail.email}
+                      onChange={(e)=>{
+                        handleChangeFaculty(e);
+                        handleChangeEmail(e);
+                      }}
+                      required 
+                    />
+                    <button 
+                      type="button" 
+                      className={styleSettings.sendCode}
+                      onClick={handleSendCode}
+                      disabled={isCooldownActive || isLoading}
+                    >
+                      {isLoading ? (
+                          <div className={styleSettings.loader}></div> 
+                        ) : isCooldownActive ? (
+                          `PLease wait ${Math.floor(cooldownTime / 60)}:${(cooldownTime % 60).toString().padStart(2, "0")}` 
+                        ) : (
+                          "Send Code"
+                        )
+                      }
+                    </button>
+                  </div>
+                </div>
+                
+                <div className={styleSettings.editInput}>
+                  <label className={styleSettings.codeRow}>Please Enter Code:
+                    {isCodeValid === true && <p className={styleSettings.success} style={{ color: 'green'}}>Code is correct</p>}
+                    {isCodeValid === false && <p className={styleSettings.error} style={{ color: 'red' }}>Code is incorrect</p>}
+                  </label>
+                  <input 
+                    type='number' 
+                    className={styleSettings.editField}
+                    value={enteredCode}
+                    onChange={handleChangeCode}
+                    required
+                  />
+                </div>
+
+                <div className={styleSettings.editInput}>
+                  <label>Faculty ID:</label>
+                  <input 
+                    type='text' 
+                    className={styleSettings.editField}
+                    id='facultyID' 
+                    name='facultyID'
+                    value={dataFaculty.facultyID}
+                    onChange={handleChangeFaculty}
+                    required
+                  />
+                </div>
+
+                <div className={styleSettings.editInput}>
+                  <label>Last Name:</label>
+                  <input 
+                    type='text' 
+                    className={styleSettings.editField}
+                    id='last_name' 
+                    name='last_name'
+                    value={dataFaculty.last_name}
+                    onChange={handleChangeFaculty}
+                    required
+                  />
+                </div>
+
+                <div className={styleSettings.editInput}>
+                  <label>First Name:</label>
+                  <input 
+                    type='text' 
+                    className={styleSettings.editField}
+                    id='first_name' 
+                    name='first_name'
+                    value={dataFaculty.first_name}
+                    onChange={handleChangeFaculty}
+                    required
+                  />
+                </div>
+
+                <div className={styleSettings.editInput}>
+                  <label>Middle Name:</label>
+                  <input 
+                    type='text' 
+                    className={styleSettings.editField}
+                    id="middle_name"
+                    name='middle_name'
+                    value={dataFaculty.middle_name}
+                    onChange={handleChangeFaculty}
+                    required
+                  />
+                </div>
+
+                <div className={styleSettings.editInput}>
+                  <label>Specialization:</label>
+                  <select 
+                    type='text' 
+                    className={styleSettings.editField}
+                    id='specialization'
+                    name='specialization'
+                    value={dataFaculty.specialization}
+                    onChange={handleChangeFaculty}
+                    required
+                  >
+                    <option value=""></option>
+                    <option value="BSCS">BSCS</option>
+                    <option value="BSIS">BSIS</option>
+                  </select> 
+                </div>
+
+                <div className={styleSettings.editInput}>
+                  <label>Contact Number:</label>
+                  <input 
+                    type='number' 
+                    className={styleSettings.editField}
+                    id='contact_number'
+                    name='contact_number'
+                    value={dataFaculty.contact_number}
+                    onChange={handleChangeFacultyWithValidation }
+                    pattern="\d{11}"
+                    required
+                  />
+                </div>
+
+                <div className={styleSettings.btnRow}>
+                  <button type="button" className={styleSettings.cancelBtn} onClick={handleCloseModal}>Close</button>
+                  <button 
+                    type="submit" 
+                    className={styleSettings.saveBtn}
+                    onClick={(e) => createRipple(e, styleSettings)}
+                    disabled={!isCodeValid || isFacultyStaffLoading}
+                  >
+                    {isFacultyStaffLoading ? (
+                      <div className={styleSettings.loader}></div> 
+                    ) : (
+                      "Save"
+                    )
+                  }
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        }
+
+      {isRegistrarModalOpen && 
+        <div className={styleSettings.modalOverlay}>
+          <div className={styleSettings.modal}>
+            <h2>Add New Registrar Staff</h2>
+            <form onSubmit={handleSave}>
+              <div className={styleSettings.editInput}>
+                <label>Email:</label>
+                <div className={styleSettings.inputWithButton}>
+                  <input 
+                    id='email' 
+                    name='email'
+                    type='email' 
+                    className={styleSettings.editField} 
+                    value={dataRegistrar.email || dataEmail.email}
+                    onChange={(e) => {
+                      handleChangeRegistrar(e);
+                      handleChangeEmail(e);
+                    }}
+                    required 
+                  />
+                  <button 
+                    type="button" 
+                    className={styleSettings.sendCode}
+                    onClick={handleSendCode}
+                    disabled={isCooldownActive || isLoading}
+                  >
+                    {isLoading ? (
+                        <div className={styleSettings.loader}></div> 
+                      ) : isCooldownActive ? (
+                        `PLease wait ${Math.floor(cooldownTime / 60)}:${(cooldownTime % 60).toString().padStart(2, "0")}` 
+                      ) : (
+                        "Send Code"
+                      )
+                    }
+                  </button>
+                </div>
+              </div>
+
+              <div className={styleSettings.editInput}>
+                <label className={styleSettings.codeRow}>Please Enter Code:
+                  {isCodeValid === true && <p className={styleSettings.success} style={{ color: 'green'}}>Code is correct</p>}
+                  {isCodeValid === false && <p className={styleSettings.error} style={{ color: 'red' }}>Code is incorrect</p>}
+                </label>
+                <input 
+                  type='number' 
+                  className={styleSettings.editField}
+                  value={enteredCode}
+                  onChange={handleChangeCode}
+                  required
+                />
+              </div>
+
+              <div className={styleSettings.editInput}>
+                <label>Last Name:</label>
+                <input 
+                  type='text' 
+                  className={styleSettings.editField}
+                  id='last_name' 
+                  name='last_name'
+                  value={dataRegistrar.last_name}
+                  onChange={handleChangeRegistrar}
+                  required 
+                />
+              </div>
+
+              <div className={styleSettings.editInput}>
+                <label>First Name:</label>
+                <input 
+                  type='text' 
+                  className={styleSettings.editField}
+                  id='first_name' 
+                  name='first_name'
+                  value={dataRegistrar.first_name}
+                  onChange={handleChangeRegistrar}
+                  required 
+                />
+              </div>
+
+              <div className={styleSettings.editInput}>
+                <label>Middle Name:</label>
+                <input 
+                  type='text' 
+                  className={styleSettings.editField}
+                  id='middle_name' 
+                  name='middle_name'
+                  value={dataRegistrar.middle_name}
+                  onChange={handleChangeAdmin}
+                  required
+                />
+              </div>
+
+              <div className={styleSettings.btnRow}>
+                <button type="button" className={styleSettings.cancelBtn} onClick={handleCloseModal}>Close</button>
+                <button 
+                  type="submit" 
+                  className={styleSettings.saveBtn}
+                  onClick={(e) => createRipple(e, styleSettings)}
+                  disabled={!isCodeValid || isRegistrarStaffLoading}
+                >
+                  {isRegistrarStaffLoading ? (
+                      <div className={styleSettings.loader}></div> 
+                    ) : (
+                      "Save"
+                    )
+                  }
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      }
+      
+    </div>
+
+    
+  );
+
+  
+}

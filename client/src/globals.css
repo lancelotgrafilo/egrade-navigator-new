@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+  --background-color: #fafafa;
+  --paragraph-font: Lato;
+  --primary-color: #1b4a9c;
+  --font-color: #3c3c3b;
+  --accent-color: #82c6ff;
+  --button-color: #476394;
+  --font-highlight: #46a5f5;
+}
+
+*{
+  font-family: Montserrat;
+  /* color: var(--font-color); */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color: var(--background-color);
+  height: 100dvh;
+  overflow-x: hidden;
+}
+
+/* globals.css */
+
+
+
+.toastBody {
+  color: white !important; /* Change this to your desired text color */
+  border-radius: 24px;
+}
+
+/* Optional: Customize other parts of the toast */
+.toastBody .Toastify__toast {
+  background-color: #f0f0f0; /* Background color */
+  color: white !important; /* Force text color */
+}
+
+.toastBody .Toastify__toast--success {
+  border-left: 5px solid #4CAF50; /* Success toast border color */
+}
+
+.toastBody .Toastify__toast--error {
+  border-left: 5px solid #F44336; /* Error toast border color */
+  color: white !important;
+}
+
+.toastBody .Toastify__toast--info {
+  border-left: 5px solid #2196F3; /* Info toast border color */
+}
+
+.toastBody .Toastify__toast--warning {
+  border-left: 5px solid #FFC107; /* Warning toast border color */
+}
+
+@media only screen and (max-width: 768px) {
+  .Toastify__toast {
+    width: 100%; 
+    padding: 8px; /* Adjust padding for smaller screens */
+    font-size: 14px; /* Slightly smaller font size */
+    border-radius: 12px; /* Make corners slightly less round on smaller screens */
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .Toastify__toast {
+    width: 100%; 
+    font-size: 12px; /* Reduce font size further for mobile */
+    padding: 6px; /* Smaller padding for small screens */
+    border-radius: 8px; /* More compact border-radius */
+  }
+}

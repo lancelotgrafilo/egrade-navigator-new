@@ -1,0 +1,537 @@
+
+.dashboardContainer {
+  position: relative;
+}
+
+/* =================================== SIDEBAR STYLES ================================== */
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  width: 80px;
+  height: 100%;
+  background-color: #1b4a9c;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  z-index: 1 ;
+}
+
+.sidebarMenuLink:hover ~ .sidebar {
+  z-index: 9999;
+}
+
+
+.sidebarIcons {
+  width: 32px;
+  height: auto;
+  padding-right: 4px;
+}
+.sidebar.active .sidebarIcons{
+  padding-right: -4px;
+}
+
+.sidebarMenu {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  list-style: none; 
+}
+
+
+.sidebarMenuItem {
+  position: relative;
+  /* overflow: hidden; */
+  margin: 0;
+  width: 100%;
+  opacity: 0;
+  animation: slideRight 0.5s forwards;
+}
+
+.navItem {
+  opacity: 0;
+}
+
+.sidebar.active .navItem {
+  opacity: 1;
+  color: #fafafa;
+}
+
+.sidebarMenuLink {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 600;
+  padding-left: 24px;
+  box-sizing: border-box;
+  transition: background-color 0.3s, padding-left 0.3s;
+  text-decoration: none; 
+  position: relative;
+}
+
+/* Ensure the disabled buttons are visually distinct */
+.sidebarMenuItem.disabled {
+  pointer-events: none; 
+  opacity: 0.5; 
+  cursor: not-allowed; 
+}
+
+.sidebarMenuLink.disabledLink {
+  color: #ccc !important; 
+  text-decoration: none !important; 
+  pointer-events: none !important; 
+  opacity: 0.6; 
+}
+
+.sidebarMenuItem.disabled .navItem {
+  color: #999; /* Adjusts the text inside the disabled link */
+}
+
+
+.sidebarMenuItem:nth-child(2) .sidebarMenuLink,
+.sidebarMenuItem:nth-child(7) .sidebarMenuLink {
+  font-size: 14px;
+}
+.sidebarMenuLink:hover {
+  padding-left: 30px;
+}
+
+.sidebarMenuLink.active {
+  background: #5479f7 ;
+}
+
+.sidebarMenuLink .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+}
+
+
+.sidebarMenuLink img {
+  margin-right: 4px;
+}
+
+.tooltip {
+  text-align: center;
+  position: absolute;
+  background-color: #fafafa;
+  left: 150%;
+  top: 50%;
+  transform: translate(-20%, -50%);
+  box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.2);
+  border-radius: 0.6rem;
+  padding: 0.4rem 1.2rem;
+  font-size: 14px;
+  font-weight: 600;
+  color: #3c3c3b;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  cursor: default;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.tooltip:nth-child(2),
+.tooltip:nth-child(7) {
+  font-size: 16px;
+}
+
+.sidebarMenuLink:hover + .tooltip {
+  opacity: 1;
+  z-index: 20;
+}
+
+
+.sidebar.active .tooltip {
+  display: none;
+}
+
+
+.sidebar.active {
+  width: 250px;
+}
+
+.sidebar .logo .eGradeLogo {
+  display: flex;
+  width: 150px;
+  height: auto;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  align-items: center;
+}
+
+.sidebar.active .eGradeLogo {
+  opacity: 1;
+}
+
+.sidebarMenuItem:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.sidebarMenuItem:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.sidebarMenuItem:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.sidebarMenuItem:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.sidebarMenuItem:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.sidebarMenuItem:nth-child(6) {
+  animation-delay: 0.6s;
+}
+
+.sidebarMenuItem:nth-child(7) {
+  animation-delay: 0.7s;
+}
+
+.sidebarMenuItem:nth-child(8) {
+  animation-delay: 0.8s;
+}
+
+.sidebarMenuItem:nth-child(9) {
+  animation-delay: 0.9s;
+}
+.sidebarMenuItem:nth-child(10) {
+  animation-delay: 1s;
+}
+.sidebarMenuItem:nth-child(11) {
+  animation-delay: 1.1s;
+}
+.sidebarMenuItem:nth-child(12) {
+  animation-delay: 1.2s;
+}
+
+.sidebarMenuItem:nth-child(12) .sidebarMenuLink {
+  background: transparent;
+  border: none;
+  font-weight: 600;
+}
+.sidebarMenuItem:nth-child(12) .sidebarMenuLink span {
+  font-weight: 600;
+}
+
+.userContainer {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 8px;
+  margin-top: 12px;
+}
+
+.userImgContainer {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userImg {
+  width: auto;
+  height: 50px;
+  padding-left: 16px;
+  margin-top: -8px;
+  transition: all .3s ease;
+}
+.sidebar.active .userImg{
+  padding-left: 32px;
+}
+
+.userInfo {
+  padding-left: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.5rem;
+  transition: opacity 0.3s ease;
+}
+
+.userInfo p {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar.active .userInfo p {
+  opacity: 1;
+}
+
+.sidebar.active .userImgContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userName,
+.userStatus {
+  color: #fafafa;
+}
+
+.userStatus {
+  font-size: 12px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding-left: 24px;
+}
+
+#btn {
+  cursor: pointer;
+  width: 32px;
+  height: auto;
+  position: absolute;
+  top: 1.3rem;
+  right: 24px;
+}
+
+
+
+/* =====================================MAIN CONTENT ============================== */
+
+.mainContent {
+  position: relative;
+  height: 100vh;
+  top: 0;
+  left: 80px;
+  transition: left 0.3s ease, width 0.3s ease;
+  width: calc(100% - 80px);
+  padding: 1rem;
+  background: url('../../assets/images/rightHex.png') no-repeat right top;
+  background-size: cover;
+  background-attachment: fixed; 
+  z-index: 5;
+}
+
+.mainContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.sidebar.active ~ .mainContent {
+  left: 250px; 
+  width: calc(100% - 250px); 
+  
+}
+
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
+
+/* =====================================MODAL========================================= */
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: all .5s ease;
+}
+
+.modal {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal h2 {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+.modal h4 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.modal form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal form button {
+  margin-right: 10px;
+}
+
+.cancelBtn{
+  font-size: 20px;
+  background: none;
+  border: none;
+  color: #3b3b3b;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.confirmLogoutBtn{
+  font-size: 20px;
+  background-color: red;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 16px;
+  cursor: pointer;
+  letter-spacing: 1.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonRow{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.buttonRow{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+
+@media (min-width: 100px) and (max-width: 500px) {
+
+ 
+  .sidebar {
+    width: 40px;
+  }
+
+  .sidebar.active {
+    width: 130px;
+  }
+
+  .sidebarIcons {
+    width: 24px;
+    height: auto;
+  }
+
+  .sidebarMenuItem{
+    text-align: left;
+  }
+  .sidebarMenuLink {
+    font-size: 12px;
+    padding-left: 9px;
+    height: 30px;
+  }
+
+.sidebarMenuItem:nth-child(2) .sidebarMenuLink,
+.sidebarMenuItem:nth-child(7) .sidebarMenuLink {
+  font-size: 12px;
+}
+
+  .sidebarMenuLink:hover {
+    padding-left: 20px;
+  }
+
+  .sidebarMenuLink.active {
+    padding-left: 6px;
+  }
+
+  .tooltip {
+    left: 80px;
+    padding: 0.2rem 0.8rem;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .userContainer {
+    height: 60px;
+    margin-top: 8px;
+    gap: 6px;
+  }
+
+  .userImg {
+    height: 32px;
+    margin-left: -12px;
+  }
+
+  .sidebar.active .userImg {
+    vertical-align: middle;
+    padding-left: 0;
+  }
+
+  .userInfo {
+    padding-left: 0px;
+    margin-left: -18px;
+    font-size: 16px;
+  }
+
+  .userInfo p {
+    font-size: 14px;
+  }
+
+  .userStatus {
+    font-size: 14px;
+  }
+
+  .logo {
+    gap: 16px;
+    padding-left: 8px;
+  }
+  
+  .sidebar .logo .eGradeLogo{
+    width: 80px;
+    margin-top: 8px;
+  }
+
+  .mainContent {
+    left: 40px;
+    width: calc(100% - 40px);
+    padding: 0.5rem;
+  }
+
+  .sidebar.active ~ .mainContent {
+    left: 150px;
+    width: calc(100% - 40px);
+  }
+
+  #btn {
+    top: 1.3rem;
+    right: 8px;
+    width: 24px;
+  }
+}

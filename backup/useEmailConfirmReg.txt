@@ -1,0 +1,130 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
+
+const useEmailConfirmReg = () => {
+  const [dataEmail, setDataEmail] = useState({
+    email: "",
+    subject: "Email Confirmation Code",
+    code: ""
+  });
+
+  const [errorEmail, setErrorEmail] = useState("");
+  const [confirmationCode, setConfirmationCode] = useState("");
+  const [enteredCode, setEnteredCode] = useState("");
+  const [isCodeValid, setIsCodeValid] = useState(null); // To indicate whether the code is valid or not
+  const [isCooldownActive, setIsCooldownActive] = useState(false); // To track if the cooldown is active
+  const [cooldownTime, setCooldownTime] = useState(0); // Remaining time in seconds
+
+  const handleChangeEmail = (e) => {
+    setDataEmail({ ...dataEmail, [e.target.name]: e.target.value });
+  };
+
+  const handleChangeCode = (e) => {
+    const code = e.target.value;
+    setEnteredCode(code);
+
+    // debug line
+    // console.log('Entered Code:', code);
+    // console.log('Confirmation Code:', confirmationCode);
+
+    // Verify the code as it is being typed
+    if (code === confirmationCode) {
+      setIsCodeValid(true);
+    } else {
+      setIsCodeValid(false);
+    }
+  };
+
+  const validateEmail = (email) => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  };
+
+  const handleSubmitEmail = async (e) => {
+    e.preventDefault();
+    setErrorEmail("");
+
+    if (!validateEmail(dataEmail.email)) {
+      setErrorEmail("Invalid email format");
+      return;
+    }
+
+    if (isCooldownActive) {
+      setErrorEmail("You must wait before sending another code.");
+      return;
+    }
+
+    try {
+      // Send POST request to backend to send confirmation code
+      const response = await axios.post("/api/send_emailConfirmation", {
+        email: dataEmail.email
+      });
+
+      if (response.status === 200) {
+        console.log("Confirmation email sent successfully");
+        setConfirmationCode(response.data.confirmationCode);
+        setDataEmail({ email: "", subject: "Email Confirmation Code", code: "" });
+        startCooldown();
+      } else {
+        setErrorEmail("Unexpected response status: " + response.status);
+      }
+
+    } catch (error) {
+      setErrorEmail(error.response && error.response.data.message 
+        ? error.response.data.message 
+        : "Email sending failed. Please try again.");
+    }
+  };
+
+  const startCooldown = () => {
+    const cooldownDuration = 180; // 3 minutes in seconds
+    const endTime = Date.now() + cooldownDuration * 1000;
+
+    setIsCooldownActive(true);
+    setCooldownTime(cooldownDuration);
+
+    const interval = setInterval(() => {
+      const remainingTime = Math.max(0, Math.floor((endTime - Date.now()) / 1000));
+      setCooldownTime(remainingTime);
+
+      if (remainingTime <= 0) {
+        clearInterval(interval);
+        setIsCooldownActive(false);
+      }
+    }, 1000);
+  };
+
+  const resetCode = () => {
+    setConfirmationCode("");
+    setEnteredCode("");
+    setIsCodeValid(null);
+    setDataEmail({
+      email: '',
+    });
+  };
+
+  useEffect(() => {
+    if (isCooldownActive) {
+      const interval = setInterval(() => {
+        setCooldownTime((prevTime) => Math.max(0, prevTime - 1));
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }
+  }, [isCooldownActive]);
+
+  return {
+    dataEmail,
+    errorEmail,
+    handleChangeEmail,
+    handleSubmitEmail,
+    enteredCode,
+    handleChangeCode,
+    isCodeValid,
+    resetCode,
+    isCooldownActive,
+    cooldownTime
+  };
+};
+
+export default useEmailConfirmReg;

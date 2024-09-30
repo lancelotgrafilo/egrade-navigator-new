@@ -1,0 +1,261 @@
+import { useState, useCallback } from 'react';
+import styleStudent from './students.module.css';
+import deleteIcon from '../../assets/icons/delete.png';
+import addIcon from '../../assets/icons/add.png';
+import download from '../../assets/icons/csvFormatdownload.png';
+import uploadIcon from '../../assets/icons/upload.png';
+import listIcon from '../../assets/icons/list.png';
+import { useNavigate } from 'react-router-dom';
+// import { usePath } from '../../utils/contexts/PathContext';
+
+import useFetchStudents from '../../utils/hooks/useGetStudents';
+
+import debounce from 'lodash/debounce';
+
+
+export function Student() {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [isUploadModalOpen, setUploadModalOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  const navigateStudentSubject = () => {
+    navigate('/admin/students/student_subject');
+  };
+  const handleDelete = (id) => {
+    console.log(`Delete user with id: ${id}`);
+  };
+  const handleAddClick = () => {
+    setModalOpen(true);
+  };
+  
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    setUploadModalOpen(false);
+  };
+
+  const handleUploadClick = () => {
+    setUploadModalOpen(true);
+  };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file && file.type !== 'text/csv') {
+      setError('Only .csv files are allowed.');
+      setSelectedFile(null);
+    } else {
+      setSelectedFile(file);
+      setError('');
+    }
+  };
+
+  const handleUpload = () => {
+    // Implement upload logic here
+  };
+
+  const handleDownload = () => {
+    // Define the CSV content with a newline at the end
+    const csvContent = 'student_id,first_name,middle_name,last_name,course\n';
+
+    // Create a Blob with the CSV content and correct MIME type
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+
+    // Create a URL for the Blob
+    const url = URL.createObjectURL(blob);
+
+    // Create a temporary anchor element to trigger the download
+    const a = document.createElement('a');
+    a.href = url;
+    a.setAttribute('download', 'student_format.csv');
+
+    // Append the anchor to the body, click it to trigger the download, and remove it
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    // Revoke the Object URL to free up memory
+    URL.revokeObjectURL(url);
+  };
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const { students, errorStudent } = useFetchStudents(searchQuery);
+  
+
+  const debouncedSearch = useCallback(
+    debounce((query) => {
+      setSearchQuery(query);
+    }, 100),
+    []
+  );
+
+  const handleSearchChange = (e) => {
+    e.preventDefault();
+    debouncedSearch(e.target.value);
+  };
+  
+  if (errorStudent) {
+    return <p>Error fetching data: {error.message}</p>; // Display error message if fetch fails
+  }
+
+  //todo search feature
+  //todo upload feature
+
+  return (
+    <div className={isModalOpen ? `${styleStudent.mainContainer} ${styleStudent.blurred}` : styleStudent.mainContainer}>
+
+      <div className={styleStudent.dashboardContent}>
+        <div className={styleStudent.searchBar}>
+          <input 
+            type="text" 
+            placeholder="Search Student..." 
+            className={styleStudent.searchInput} 
+            value={searchQuery}
+            onChange={handleSearchChange}
+          />
+          <div className={styleStudent.buttonContainer}>
+            
+            <button className={styleStudent.addBtn} onClick={handleAddClick}>
+              <img src={addIcon} alt="" />
+              Add
+            </button>
+            <button className={styleStudent.addFile} onClick={handleUploadClick}>
+              <img src={uploadIcon} alt="" />
+              Upload File
+            </button>
+            <button className={styleStudent.csvFormat} onClick={handleDownload}>
+              <img src={download} alt="" />
+              CSV Format
+            </button>
+          </div>
+        </div>
+
+        <div className={styleStudent.tableContainer}>
+          <table className={styleStudent.classInfoTable}>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Student ID</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Middle Name</th>
+                <th>Course</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {Array.isArray(students) && students.map((student) => (
+                <tr key={student.id}>
+                  <td>{student.originalStudent}</td>
+                  <td>{student.schoolID}</td>
+                  <td>{student.last_name}</td>
+                  <td>{student.first_name}</td>
+                  <td>{student.middle_name}</td>
+                  <td>{student.course}</td>
+                  <td>
+                    <div className={styleStudent.actionRow}>
+                      <button onClick={() => navigateStudentSubject(student.id)} className={styleStudent.listBtn}>
+                        <img src={listIcon} className={styleStudent.listImg} alt="List" />
+                      </button>
+                      <button onClick={() => handleDelete(student.id)} className={styleStudent.deleteBtn}>
+                        <img src={deleteIcon} className={styleStudent.deleteImg} alt="Delete" />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {isModalOpen && (
+        <div className={styleStudent.modalOverlay}>
+          <div className={styleStudent.modal}>
+            <h2>Add Class Program</h2>
+            <form onSubmit={(e) => {
+              e.preventDefault();
+            }}>
+              <div className={styleStudent.addInput}>
+                <label>Subject:</label>
+                <select className={styleStudent.selectInput}>
+                  <option></option>
+                  <option value="Math">Math</option>
+                  <option value="Science">Science</option>
+                  <option value="English">English</option>
+                  <option value="History">History</option>
+                </select>
+              </div>
+              <div className={styleStudent.addInput}>
+                <label>Course:</label>
+                <select className={styleStudent.selectInput}>
+                  <option></option>
+                  <option value="BSCS">BSCS</option>
+                  <option value="BSIS">BSIS</option>
+                  <option value="BS-Entrepreneurship">BS-Entrepreneurship</option>
+                  <option value="BS-Economics">BS-Economics</option>
+                  <option value="BPA">BPA</option>
+                </select>
+              </div>
+              <div className={styleStudent.addInput}>
+                <label>Semester:</label>
+                <select className={styleStudent.selectInput}>
+                  <option></option>
+                  <option value="1st">1st</option>
+                  <option value="2nd">2nd</option>
+                  <option value="Summer">Summer</option>
+                </select>
+              </div>
+              <div className={styleStudent.addInput}>
+                <label>Academic Year:</label>
+                <select className={styleStudent.selectInput}>
+                  <option></option>
+                  <option value="2023-2024">2023-2024</option>
+                  <option value="2024-2025">2024-2025</option>
+                  <option value="2025-2026">2025-2026</option>
+                </select>
+              </div>
+              <div className={styleStudent.btnRow}>
+                <button type="button" className={styleStudent.cancelBtn} onClick={handleCloseModal}>
+                  Close
+                </button>
+                <button type="submit" className={styleStudent.saveBtn}>
+                  Save
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {isUploadModalOpen && (
+        <div className={styleStudent.modalOverlay}>
+          <div className={styleStudent.modal}>
+            <h2>Upload CSV File</h2>
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              handleUpload();
+              handleCloseModal();
+            }}>
+              <div className={styleStudent.uploadInput}>
+                <label>Select File:</label>
+                <input type="file" accept=".csv" className={styleStudent.uploadField} onChange={handleFileChange} />
+                {error && <p className={styleStudent.error}>{error}</p>}
+              </div>
+              <div className={styleStudent.btnRow}>
+                <button type="button" className={styleStudent.cancelBtn} onClick={handleCloseModal}>
+                  Close
+                </button>
+                <button type="submit" className={styleStudent.saveBtn}>
+                  Upload
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+    </div>
+  );
+}

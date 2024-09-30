@@ -1,0 +1,595 @@
+
+.loginPageContainer {
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.navBar {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.navUl {
+  display: flex;
+  list-style: none;
+  height: 100px;
+  align-items: center;
+}
+
+.navLi {
+  list-style-type: none;
+  margin-right: 32px;
+  font-weight: bold;
+  animation: slideTop 1s ease forwards;
+  animation-delay: calc(0.2s * var(--i));
+  opacity: 0;
+  display: inline-block;
+}
+
+.navButton {
+  text-decoration: none;
+  font-size: 24px;
+  padding: 8px 24px;
+  border-radius: 24px;
+  transition: transform 0.3s ease;
+}
+
+.navButton:hover {
+  cursor: pointer;
+  transform: translateY(-5px);
+}
+
+.navLogo {
+  width: 250px;
+  height: auto;
+  margin-left: 2%;
+  animation: slideRight 1s ease forwards;
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideTop {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* CONTENT */
+
+.homeSection {
+  height: 84vh;
+  position: relative;
+  background: url('../assets/images/lefthexagon.svg') no-repeat left top;
+  background-size: contain;
+  animation: slideRight 1s ease forwards;
+  z-index: 1;
+  
+}
+
+.homeContainer {
+  height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5% 100px 5%;
+  z-index: 2;
+}
+
+
+.pageDivider {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.pageDivider img {
+  width: 100%;
+  height: auto;
+  animation: slideTop 1s ease forwards;
+  z-index: -1;
+  pointer-events: none;
+  margin-left: 1px;
+  margin-bottom: -3px;
+}
+
+.loginContainer {
+  width: 500px;
+  height: auto;
+  border: 0.5px solid #1b4a9c;
+  border-radius: 32px;
+  box-shadow: 0 4px 12px rgba(27, 74, 156, 0.3);
+  background-color: #cae0fd;
+  padding: 32px 24px 32px 24px;
+  margin-top: -132px;
+  z-index: 1;
+  animation: slideTop 1s ease forwards;
+}
+
+.sendCode {
+  width: 180px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  border: none;
+  background-color: #1b4a9c; /* Example button color */
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 8px 4px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.sendCode:hover {
+  background-color: #0a3e6b; /* Darker shade on hover */
+}
+
+.sendCode:disabled {
+  background-color: #ccc; /* Disabled state */
+  cursor: not-allowed;
+}
+
+.loginContainer h1 {
+  font-size: 36px;
+  text-align: center;
+}
+
+.sendContainer{
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+
+}
+
+.inputBox {
+  position: relative;
+  width: 100%;
+  margin-top: 14px;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 8px rgba(27, 74, 156, 0.2);
+  border-radius: 40px;
+}
+
+.inputLabelUser,
+.inputLabelPass {
+  color: #fff;
+  font-size: 24px;
+  position: absolute;
+  left: 24px;
+  top: 0.5rem;
+  padding-left: 2px;
+  padding-right: 2px;
+  transition: top 0.2s ease-in-out, left 0.2s ease-in-out, font-size 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+#labelConfirmCode{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.userInput:focus ~ .inputLabelUser,
+.userPass:focus ~ .inputLabelPass {
+  color: #3c3c3b;
+  top: -0.6rem;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: transparent;
+  border-radius: 32px;
+}
+
+.userInput:not(:focus):not(:placeholder-shown) ~ .inputLabelUser,
+.userPass:not(:focus):not(:placeholder-shown) ~ .inputLabelPass {
+  top: -0.6rem;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #6e8ec5;
+  border-radius: 32px;
+  color: #fff;
+}
+
+.userInput,
+.userPass {
+  padding: 8px;
+  width: 100%;
+  background-color: #6e8ec5;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  font-size: 24px;
+  color: #3c3c3b;
+  box-sizing: border-box;
+  padding-left: 24px;
+}
+
+.userInput:focus,
+.userPass:focus {
+  background-color: #fff;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.inputBox img {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.loginContainer .rememberForgot {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  margin: 30px 0 16px;
+}
+
+.rememberForgot label {
+  display: flex;
+  align-items: center;
+}
+
+.rememberForgot label input {
+  accent-color: #1b4a9c;
+  margin-right: 3px;
+}
+
+.forgotPass {
+  color: #3c3c3b;
+  text-decoration: none;
+}
+
+.forgotPass:hover {
+  text-decoration: underline;
+}
+
+.loginButton {
+  width: 100%;
+  height: 45px;
+  background: #1b4a9c;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  border-radius: 32px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  border: none;
+}
+
+.register {
+  font-size: 16px;
+  text-align: center;
+  margin-top: 24px;
+}
+
+.registerBtn {
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.registerBtn:hover {
+  text-decoration: underline;
+}
+
+.eyeIcon {
+  width: 28px; 
+  height: auto; 
+  cursor: pointer;
+}
+
+.cancelBtn{
+  font-size: 20px;
+  background: none;
+  border: none;
+  color: red;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+.saveBtn,
+.confirmDeleteBtn,
+.uploadBtn{
+  font-size: 20px;
+  background-color: #00C60E;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 16px;
+  cursor: pointer;
+  letter-spacing: 1.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.saveBtn{
+  width: 80px;
+}
+.uploadBtn{
+  width: 100px;
+  
+}
+.saveBtn:disabled,
+.confirmDeleteBtn:disabled,
+.uploadBtn:disabled {
+  background-color: #D3D3D3; /* Light Gray */
+  color: #3b3b3b;
+  cursor: not-allowed;
+  opacity: 0.6; /* Optional: to reduce contrast and indicate disability */
+}
+
+.confirmDeleteBtn{
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btnRow{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+/* KEYFRAMES ANIMATION */
+@keyframes slideRight {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideTop {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideBottom {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+.loader {
+  vertical-align: middle;
+  width: 20px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 4px solid #1b4a9c;
+  animation:
+    l20-1 0.8s infinite linear alternate,
+    l20-2 1.6s infinite linear;
+}
+@keyframes l20-1{
+   0%    {clip-path: polygon(50% 50%,0       0,  50%   0%,  50%    0%, 50%    0%, 50%    0%, 50%    0% )}
+   12.5% {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100%   0%, 100%   0%, 100%   0% )}
+   25%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 100% 100%, 100% 100% )}
+   50%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
+   62.5% {clip-path: polygon(50% 50%,100%    0, 100%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
+   75%   {clip-path: polygon(50% 50%,100% 100%, 100% 100%,  100% 100%, 100% 100%, 50%  100%, 0%   100% )}
+   100%  {clip-path: polygon(50% 50%,50%  100%,  50% 100%,   50% 100%,  50% 100%, 50%  100%, 0%   100% )}
+}
+@keyframes l20-2{ 
+  0%    {transform:scaleY(1)  rotate(0deg)}
+  49.99%{transform:scaleY(1)  rotate(135deg)}
+  50%   {transform:scaleY(-1) rotate(0deg)}
+  100%  {transform:scaleY(-1) rotate(-135deg)}
+}
+
+
+@media (min-width: 100px) and (max-width: 500px) {
+
+  .navBar{
+    height: 80px;
+    padding: 8px 16px;
+  }
+  .navLogo{
+    width: 150px;
+    margin-left: 0;
+  }
+
+  .navUl{
+    margin-right: 0;
+  }
+
+  .navLi,
+  #navLi{
+    margin-right: -8px;
+  }
+
+  .navButton,
+  .login{
+    font-size: 12px;
+    margin-right: 0;
+  }
+  .login{
+    padding: 8px 12px;
+  }
+
+  .homeh1{
+    font-size: 28px;
+    margin-left: -8px;
+  }
+  .homeImage{
+    max-width: 220px;
+    min-width: 180px;
+    margin-top: -80px;
+  }
+
+  .homeSection{
+    height: 87dvh;
+  }
+
+  .sendContainer{
+    height: 50px;
+  }
+  .sendCode{
+    font-size: 12px;
+    margin-top: 14px;
+    margin-bottom: 4px;
+  }
+
+  .cancelBtn,
+  .saveBtn{
+    font-size: 14px;
+  }
+  
+
+  .loginContainer{
+    width: 300px;
+    height: 280px;
+    padding: 16px 12px;
+  }
+
+  .formLogo{
+    width: 100px;
+  }
+
+  .loginContainer h1 {
+    font-size: 18px;
+  }
+
+  /* .inputBox {
+    margin-top: 8px;
+    margin-bottom: 8px;
+  } */
+
+  .inputLabelUser,
+  .inputLabelPass,
+  .inputLabelCode {
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    left: 12px;
+    top: 0.5rem;
+  }
+  #emailVerification{
+    font-size: 12px;
+  }
+
+  #labelConfirmCode{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+  }
+
+  .success, .error{
+    margin-left: 8px;
+    font-size: 12px;
+  }
+
+  .userInput:not(:focus):not(:placeholder-shown) ~ .inputLabelUser,
+  .userPass:not(:focus):not(:placeholder-shown) ~ .inputLabelPass {
+    top: -0.4rem;
+    font-size: 10px;
+  }
+
+  .userInput:focus ~ .inputLabelUser,
+  .userPass:focus ~ .inputLabelPass {
+    font-size: 9px;
+    top: -0.4rem;
+  }
+
+  .userInput,
+  .userPass {
+    padding: 8px;
+    font-size: 12px;
+    color: #3c3c3b;
+    box-sizing: border-box;
+    padding-left: 12px;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .inputBox img {
+    width: 16px;
+  }
+
+  .loginContainer .rememberForgot {
+    font-size: 8px;
+  }
+
+  .forgotPass {
+    margin-top: -8px;
+  }
+  .rememberForgot label{
+    margin-top: -9px;
+  }
+
+  .loginButton{
+    font-size: 16px;
+    height: 24px;
+    margin-top: -16px;
+  }
+
+  .register {
+    font-size: 10px;
+    margin-top: 8px;
+  }
+
+  .loader{
+    width: 12px;
+  }
+}
