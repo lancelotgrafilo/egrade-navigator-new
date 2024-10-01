@@ -60,7 +60,7 @@ const useAdminSubmit = () => {
     setIsAdminLoading(true);
 
     try {
-      const response = await axios.post("/api/post_admin", dataAdmin, {
+      const response = await axios.post("https://egrade-backend.onrender.com/api/post_admin", dataAdmin, {
         headers: { 'Content-Type': 'application/json' }
       });
 

@@ -12,7 +12,7 @@ const useFetchFacultyStaffs = (searchQuery) => {
   const fetchFaculty = useCallback(async () => {
     setFacultyLoading(true);
     try {
-      const response = await axios.get('/api/get_faculty_staff', {
+      const response = await axios.get('https://egrade-backend.onrender.com/api/get_faculty_staff', {
         params: { search: searchQuery },
       });
 

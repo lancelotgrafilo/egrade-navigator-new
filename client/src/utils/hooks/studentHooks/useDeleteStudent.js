@@ -13,7 +13,7 @@ const useDeleteStudent = () => {
     
     try {
       await delay(500);
-      const response = await axios.delete(`/api/del_student/${id}`);
+      const response = await axios.delete(`https://egrade-backend.onrender.com/api/del_student/${id}`);
       if (response.status === 200) {
         toast.success('Student deleted successfully');
       } else {

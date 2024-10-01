@@ -45,7 +45,7 @@ const studentSchema = new mongoose.Schema({
   year: { type: String, default: null },
   section: { type: String, default: null },
   college: { type: String, default: null },
-  curriculum_effectivity: { type: String, required: true},
+  curriculum_effectivity: { type: String },
   grades: [gradeSchema],
   user_profile: { type: String, default: null },
   createdAt: { type: Date, default: Date.now },

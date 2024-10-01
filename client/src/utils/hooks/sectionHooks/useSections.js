@@ -10,7 +10,7 @@ const useSections = () => {
   useEffect(() => {
     const fetchSections = async () => {
       try {
-        const response = await axios.get('/api/sections');
+        const response = await axios.get('https://egrade-backend.onrender.com/api/sections');
         setSections(response.data);
       } catch (error) {
         setError('Failed to fetch sections');

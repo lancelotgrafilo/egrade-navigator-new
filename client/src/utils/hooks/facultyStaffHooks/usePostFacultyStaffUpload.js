@@ -15,7 +15,7 @@ const usePostFacultyStaffUpload = () => {
     try {
       await delay(100);
       setError(null);
-      const response = await axios.post('/api/post_faculty_staff_upload', formData, {
+      const response = await axios.post('https://egrade-backend.onrender.com/api/post_faculty_staff_upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

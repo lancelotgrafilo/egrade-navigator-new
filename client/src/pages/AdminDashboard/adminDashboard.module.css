@@ -534,4 +534,9 @@
     right: 8px;
     width: 24px;
   }
+
+  .modal {
+    width: 50%; /* Set width as a percentage to be more flexible */
+    padding: 15px; /* Adjust padding to fit smaller screens */
+  }
 }

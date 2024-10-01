@@ -122,7 +122,6 @@ export function Student() {
       // Log the error object
       console.error('Upload failed:', error); 
       
-      // If the error is from Axios, log the response for more information
       if (error.response) {
         console.error('Error response data:', error.response.data);
       }
@@ -170,8 +169,6 @@ export function Student() {
     // Revoke the Object URL to free up memory
     URL.revokeObjectURL(url);
   };
-
-  
 
   const openConfirmDeleteModal = (_id) => {
     setStudentToDelete(_id);
@@ -371,7 +368,7 @@ export function Student() {
                 </select>
               </div>
               <div className={styleStudent.addInput}>
-                <label>Year:</label>
+                <label>Year Level:</label>
                 <select 
                   className={styleStudent.selectInput} 
                   name="year"

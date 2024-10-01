@@ -12,7 +12,7 @@ const useUpdateCollegeStaffDetails = () => {
       await delay(100);
       setError(null);
 
-      const response = await axios.put(`/api/college-staff-details/${userId}`, formData, {
+      const response = await axios.put(`https://egrade-backend.onrender.com/api/college-staff-details/${userId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

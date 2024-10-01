@@ -58,7 +58,7 @@ const usePostSubjects = () => {
     setSubjectLoading(true);
     try {
       await delay(3000);
-      const response = await axios.post('/api/post_subjects', dataSubject);
+      const response = await axios.post('https://egrade-backend.onrender.com/api/post_subjects', dataSubject);
       if (response.status === 201) {
         toast.success('Subject added successfully.');
         resetSubjectForm();

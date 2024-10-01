@@ -55,7 +55,7 @@ const useEmailConfirmReg = () => {
 
     setIsLoading(true);
     try {
-      const response = await axios.post("/api/post_send_emailConfirmation", {
+      const response = await axios.post("https://egrade-backend.onrender.com/api/post_send_emailConfirmation", {
         email: dataEmail.email
       });
 

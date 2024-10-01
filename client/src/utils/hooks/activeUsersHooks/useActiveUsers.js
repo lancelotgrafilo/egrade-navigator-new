@@ -17,7 +17,7 @@ export function useActiveUsers() {
     const fetchUsers = async () => {
       setLoading(true); // Set loading to true before fetching
       try {
-        const response = await axios.get('/api/all-users'); // Adjust endpoint as needed
+        const response = await axios.get('https://egrade-backend.onrender.com/api/all-users'); // Adjust endpoint as needed
         setActiveUsers(response.data);
         // Show success toast if users are loaded
         toast.info("👥 Active users loaded successfully! 🎉");

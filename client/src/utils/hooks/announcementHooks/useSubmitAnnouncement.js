@@ -14,7 +14,7 @@ export function useSubmitAnnouncement() {
     try {
       setLoading(true);
       await delay(500);
-      const response = await axios.post('/api/announcements', { announcementType, message, dueDate, instructorID });
+      const response = await axios.post('https://egrade-backend.onrender.com/api/announcements', { announcementType, message, dueDate, instructorID });
       toast.success("Announcement is Successfully Sent");
       setLoading(false);
       return response.data;

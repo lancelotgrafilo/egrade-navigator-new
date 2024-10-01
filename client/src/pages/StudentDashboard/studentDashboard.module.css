@@ -448,6 +448,11 @@
     padding: 0.75rem;
   }
 
+  .sidebar .logo .eGradeLogo{
+    width: 80px;
+    margin-top: 8px;
+  }
+
   .modal {
     width: 300px; /* Adjust width for tablets */
   }
@@ -488,19 +493,29 @@
     width: calc(100% - 150px);
   }
 
+  .sidebar .logo .eGradeLogo{
+    width: 80px;
+    margin-top: 8px;
+  }
+
   .userContainer {
     height: 50px;
     margin-top: 5px;
   }
-
+  
   .userImg {
     height: 40px;
     width: 40px;
-    margin-left: 32px;
+    margin-right: -14px;
+  }
+
+  .sidebar.active .userImg{
+    margin-left: 12px;
   }
 
   .userInfo {
     font-size: 14px;
+    margin-left: 12px;
   }
 
   .userStatus {

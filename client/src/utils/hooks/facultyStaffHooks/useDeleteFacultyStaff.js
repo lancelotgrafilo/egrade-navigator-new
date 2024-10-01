@@ -13,7 +13,7 @@ const useDeleteFacultyStaff = () => {
     setLoading(true);
     try {
       await delay(500);
-      await axios.delete(`/api/del_faculty_staff/${id}`);
+      await axios.delete(`https://egrade-backend.onrender.com/api/del_faculty_staff/${id}`);
       toast.success('Faculty Staff deleted successfully');
     } catch (err) {
       console.error('Error deleting Faculty Staff:', err);

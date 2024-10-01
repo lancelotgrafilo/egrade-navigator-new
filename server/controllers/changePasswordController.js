@@ -5,7 +5,6 @@ const FacultyStaff = require('../models/facultyStaffModel');
 const StudentModel = require('../models/student');
 const bcrypt = require('bcryptjs');
 
-const { logActivity } = require('../services/activityLogService');
 
 exports.changePassword = async (req, res) => {
   const { email, password } = req.body;
@@ -30,11 +29,6 @@ exports.changePassword = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     user.password = hashedPassword;
     await user.save();
-
-    await logActivity({
-      userId: email, // Assuming the user ID is available from the user document
-      activity: `Changed password for account with email: ${user.email}`, // Description of the activity
-    });
 
     console.log('Password changed successfully for:', user.email);
     res.status(200).json({ success: true, message: 'Password changed successfully' });

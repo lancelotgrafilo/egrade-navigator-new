@@ -18,7 +18,7 @@ const useUploadFileStudentsToClassProgram = (classProgramId) => {
       setError(null);
 
       const response = await axios.post(
-        `/api/upload_students/${classProgramId}`,
+        `https://egrade-backend.onrender.com/api/upload_students/${classProgramId}`,
         formData,
         {
           headers: {

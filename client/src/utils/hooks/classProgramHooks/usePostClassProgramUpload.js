@@ -15,7 +15,7 @@ const usePostClassProgramUpload = () => {
     try {
       await delay(500);
       setError(null);
-      const response = await axios.post('/api/post_class_program_upload', formData, {
+      const response = await axios.post('https://egrade-backend.onrender.com/api/post_class_program_upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

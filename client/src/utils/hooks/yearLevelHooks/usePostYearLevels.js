@@ -10,7 +10,7 @@ const usePostYearLevels = () => {
   const fetchYearLevels = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get('/api/year-levels'); // Adjust the endpoint as needed
+      const response = await axios.get('https://egrade-backend.onrender.com/api/year-levels'); // Adjust the endpoint as needed
       setYearLevels(response.data);
     } catch (err) {
       setError(err);
@@ -25,7 +25,7 @@ const usePostYearLevels = () => {
 
     setIsLoading(true);
     try {
-      const response = await axios.post('/api/year-levels', { yearLevel }); // Adjust the endpoint as needed
+      const response = await axios.post('https://egrade-backend.onrender.com/api/year-levels', { yearLevel }); // Adjust the endpoint as needed
       setYearLevels((prevLevels) => [...prevLevels, response.data]);
     } catch (err) {
       setError(err);

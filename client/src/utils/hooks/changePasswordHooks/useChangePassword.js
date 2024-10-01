@@ -21,7 +21,7 @@ const useChangePassword = () => {
     }
     setIsLoading(true);
     try {
-      const response = await axios.post('/api/change-password', {
+      const response = await axios.post('https://egrade-backend.onrender.com/api/change-password', {
         password: data.password,
         email: data.email,
       });

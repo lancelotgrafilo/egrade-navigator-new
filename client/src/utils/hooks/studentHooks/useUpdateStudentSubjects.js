@@ -27,7 +27,7 @@ const useUpdateStudentSubjects = (userId, matchedStudents) => {
         }));
 
         // Fetch the existing student document
-        const { data: student } = await axios.get(`/api/students-subjects/${userId}`);
+        const { data: student } = await axios.get(`https://egrade-backend.onrender.com/api/students-subjects/${userId}`);
         const existingGrades = student.grades || [];
 
         // Filter newSubjects to only include unique entries based on academic year and semester

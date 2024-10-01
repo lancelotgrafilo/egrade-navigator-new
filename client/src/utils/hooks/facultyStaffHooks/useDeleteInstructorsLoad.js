@@ -12,8 +12,7 @@ const useDeleteInstructorsLoad = () => {
     console.log(`Attempting to delete Instructor's Load with ID: ${id}`);
     try {
       await delay(500);
-      console.log(`Deleting from URL: /api/del_instructors_load/${id}`);
-      const response = await axios.delete(`/api/del_instructors_load/${id}`);
+      const response = await axios.delete(`https://egrade-backend.onrender.com/api/del_instructors_load/${id}`);
       console.log(`Response: ${response.status}`); // Log the response status
       toast.success("Instructor's Load deleted successfully");
     } catch (err) {

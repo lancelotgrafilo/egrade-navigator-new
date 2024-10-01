@@ -13,7 +13,7 @@ const useDeleteStudent = () => {
 
     try {
       await delay(500);
-      const response = await axios.delete(`/api/post_instructors_load_student/${instructorId}/load/${loadId}/student/${studentId}`);
+      const response = await axios.delete(`https://egrade-backend.onrender.com/api/post_instructors_load_student/${instructorId}/load/${loadId}/student/${studentId}`);
       setIsLoading(false);
       return response.data; // Return the updated instructor
     } catch (err) {

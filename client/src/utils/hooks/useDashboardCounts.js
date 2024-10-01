@@ -10,7 +10,7 @@ const useDashboardCounts = () => {
   useEffect(() => {
     const fetchCounts = async () => {
       try {
-        const response = await axios.get('/api/dashboard-counts');
+        const response = await axios.get('https://egrade-backend.onrender.com/api/dashboard-counts');
         setCounts(response.data);
       } catch (err) {
         setError(err);

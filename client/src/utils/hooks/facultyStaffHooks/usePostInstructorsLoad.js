@@ -68,7 +68,7 @@ const useInstructorsLoadSubmit = (instructorId) => { // Accept instructorId as a
 
     try {
       await delay(500);
-      const response = await axios.post("/api/post_instructors_load", {
+      const response = await axios.post("https://egrade-backend.onrender.com/api/post_instructors_load", {
         ...dataInstructorsLoad,
         _id: instructorId, // Include _id in the request data
       }, {

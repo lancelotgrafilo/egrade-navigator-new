@@ -13,7 +13,7 @@ const useDeleteStudentSubject = () => {
     console.log(`Attempting to delete Student's Subject with ID: ${id}`);
     try {
       await delay(500);
-      const response = await axios.delete(`/api/del_student_subject/${id}`);
+      const response = await axios.delete(`https://egrade-backend.onrender.com/api/del_student_subject/${id}`);
       console.log(`Response: ${response.status}`); // Log the response status
       toast.success("Student's Subject deleted successfully");
     } catch (err) {

@@ -78,7 +78,7 @@ const useStudentSubmit = () => {
     setIsStudentLoading(true);
 
     try {
-      const response = await axios.post('/api/post_register_student', dataStudent, {
+      const response = await axios.post('https://egrade-backend.onrender.com/api/post_register_student', dataStudent, {
         headers: { 'Content-Type': 'application/json' }
       });
 

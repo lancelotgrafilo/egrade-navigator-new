@@ -16,7 +16,7 @@ const useAddInstructorToClassProg = (classProgramId) => {
 
     try {
       await delay(500);
-      const response = await axios.post(`/api/post_class_program_instructor/${classProgramId}/add_instructor`, instructorData);
+      const response = await axios.post(`https://egrade-backend.onrender.com/api/post_class_program_instructor/${classProgramId}/add_instructor`, instructorData);
       setIsLoading(false);
       return response.data; // Return the updated class program
     } catch (err) {

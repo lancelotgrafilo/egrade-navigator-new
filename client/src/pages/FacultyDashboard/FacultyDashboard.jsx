@@ -103,10 +103,10 @@ export function FacultyDashboard() {
     try {
 
       // Update isActive to false
-      await axios.patch(`/api/update-faculty-staff-status/${userId}`, { isActive: false });
+      await axios.patch(`https://egrade-backend.onrender.com/api/update-faculty-staff-status/${userId}`, { isActive: false });
   
       // Call the server-side API to log the activity
-      await axios.post('/api/logout-activity', { 
+      await axios.post('https://egrade-backend.onrender.com/api/logout-activity', { 
         userID: id, 
         activityDescription: 'logged out'
       });
@@ -132,9 +132,9 @@ export function FacultyDashboard() {
   useEffect(() => {
     const fetchUserProfileImage = async () => {
       try {
-        const response = await axios.get(`/api/get_faculty_details/${userId}`);
+        const response = await axios.get(`https://egrade-backend.onrender.com/api/get_faculty_details/${userId}`);
         const profileImageUrl = response.data.user_profile;
-        const backendUrl = 'http://localhost:5000';
+        const backendUrl = 'https://egrade-backend.onrender.com';
         const fullProfileImageUrl = profileImageUrl
           ? `${backendUrl}${profileImageUrl.startsWith('/uploads') ? '' : '/uploads/user-profiles/'}${profileImageUrl}`
           : userImg;

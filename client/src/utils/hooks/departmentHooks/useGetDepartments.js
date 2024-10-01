@@ -8,7 +8,7 @@ const useGetDepartments = () => {
   useEffect(() => {
     const fetchDepartments = async () => {
       try {
-        const response = await axios.get('/api/departments');
+        const response = await axios.get('https://egrade-backend.onrender.com/api/departments');
         setDepartments(response.data);
       } catch (error) {
         setError('Error fetching departments');

@@ -9,7 +9,7 @@ const useGetClassProgramByIdStudent = (classProgramId) => {
   const fetchClassProgramById = useCallback(async () => {
     if (classProgramId) { // Only fetch if the ID is set
       try {
-        const response = await axios.get(`/api/get_class_program_students/${classProgramId}`);
+        const response = await axios.get(`https://egrade-backend.onrender.com/api/get_class_program_students/${classProgramId}`);
         setClassProgramStudents(response.data);
         setError(null); // Clear error if fetch is successful
       } catch (error) {

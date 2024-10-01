@@ -29,8 +29,8 @@ export function UsersList() {
   const handleDelete = async () => {
     setLoadingDelete(true);
     try {
-      await delay(3000);
-      await axios.delete(`/api/delete_user/${userTypeToDelete}/${userIdToDelete}`);
+      await delay(100);
+      await axios.delete(`https://egrade-backend.onrender.com/api/delete_user/${userTypeToDelete}/${userIdToDelete}`);
       refetch();
       toast.success("Successfully Deleted User");
       setConfirmDeleteModalOpen(false);

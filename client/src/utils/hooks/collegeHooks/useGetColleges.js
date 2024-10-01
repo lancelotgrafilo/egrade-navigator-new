@@ -8,7 +8,7 @@ const useGetColleges = () => {
   useEffect(() => {
     const fetchColleges = async () => {
       try {
-        const response = await axios.get('/api/colleges');
+        const response = await axios.get('https://egrade-backend.onrender.com/api/colleges');
         setColleges(response.data);
       } catch (error) {
         setError('Error fetching colleges');

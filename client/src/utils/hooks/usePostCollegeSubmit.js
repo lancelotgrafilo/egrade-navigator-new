@@ -60,7 +60,7 @@ const useCollegeSubmit = () => {
     setIsCollegeStaffLoading(true);
 
     try {
-      const response = await axios.post("/api/post_college_staff", {
+      const response = await axios.post("https://egrade-backend.onrender.com/api/post_college_staff", {
         email: dataCollege.email,
         last_name: dataCollege.last_name,
         first_name: dataCollege.first_name,

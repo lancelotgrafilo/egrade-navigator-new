@@ -11,7 +11,7 @@ const useGetStudentToClassProg = (searchQuery) => {
     const fetchStudent = async () => {
 
       try {
-        const response = await axios.get('/api/get_student_to_class_prog', {
+        const response = await axios.get('https://egrade-backend.onrender.com/api/get_student_to_class_prog', {
           params: { search: searchQuery },
         })
 

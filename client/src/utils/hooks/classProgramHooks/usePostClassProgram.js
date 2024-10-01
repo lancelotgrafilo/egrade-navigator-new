@@ -80,7 +80,7 @@ const useClassProgramSubmit = () => {
 
     try {
       await delay(500);
-      const response = await axios.post("/api/post_class_program", dataClassProgram, {
+      const response = await axios.post("https://egrade-backend.onrender.com/api/post_class_program", dataClassProgram, {
         headers: { "Content-Type": "application/json" },
       });
 

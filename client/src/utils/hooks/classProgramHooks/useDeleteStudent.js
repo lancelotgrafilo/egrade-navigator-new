@@ -14,7 +14,7 @@ const useDeleteStudent = (classProgramId) => {
     
     try {
       await delay(500); // Simulate delay
-      const response = await axios.delete(`/api/del_class_program_student/${classProgramId}/${schoolId}`);
+      const response = await axios.delete(`https://egrade-backend.onrender.com/api/del_class_program_student/${classProgramId}/${schoolId}`);
       // console.log('Delete response:', response.data);
       setIsLoading(false);
       return response.data;

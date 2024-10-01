@@ -240,7 +240,6 @@ export function StudentsFaculty() {
       // Log the error object
       console.error('Upload failed:', error); 
       
-      // If the error is from Axios, log the response for more information
       if (error.response) {
         console.error('Error response data:', error.response.data);
       }

@@ -20,7 +20,7 @@ const usePostStudentsUpload = () => {
     setError(null); // Clear previous error before starting a new upload
     try {
       await delay(500); // Simulated delay
-      const response = await axios.post('/api/post_student_upload', formData, {
+      const response = await axios.post('https://egrade-backend.onrender.com/api/post_student_upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

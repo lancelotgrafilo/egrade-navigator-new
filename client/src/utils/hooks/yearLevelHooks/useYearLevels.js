@@ -10,7 +10,7 @@ const useYearLevels = () => {
   useEffect(() => {
     const fetchYearLevels = async () => {
       try {
-        const response = await axios.get('/api/year-levels');
+        const response = await axios.get('https://egrade-backend.onrender.com/api/year-levels');
         setYearLevels(response.data);
       } catch (error) {
         setError('Failed to fetch year levels');

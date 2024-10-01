@@ -12,7 +12,7 @@ const useGetAdminDetails = (userId) => {
 
     try {
       setLoading(true);
-      const response = await axios.get(`/api/get-admin-details/${userId}`);
+      const response = await axios.get(`https://egrade-backend.onrender.com/api/get-admin-details/${userId}`);
       setUserDetails(response.data);
       setError(null); // Clear previous error if fetch is successful
     } catch (err) {

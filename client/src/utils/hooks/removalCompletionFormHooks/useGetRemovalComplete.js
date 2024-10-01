@@ -10,7 +10,7 @@ const useGetRemovalComplete = () => {
     const fetchRemovalCompleteData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('/api/removal-completion'); // Adjust URL as needed
+        const response = await axios.get('https://egrade-backend.onrender.com/api/removal-completion'); // Adjust URL as needed
         setRemovalCompleteData(response.data);
       } catch (err) {
         setError('Failed to fetch removal completion data.');

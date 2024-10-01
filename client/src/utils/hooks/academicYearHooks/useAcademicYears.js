@@ -10,7 +10,7 @@ const useAcademicYears = () => {
   useEffect(() => {
     const fetchAcademicYears = async () => {
       try {
-        const response = await axios.get('/api/academic-years');
+        const response = await axios.get('https://egrade-backend.onrender.com/api/academic-years');
         setAcademicYears(response.data);
       } catch (error) {
         setError('Failed to fetch academic years');

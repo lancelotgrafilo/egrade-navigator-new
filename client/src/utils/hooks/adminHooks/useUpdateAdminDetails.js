@@ -15,7 +15,7 @@ const useUpdateAdminDetails = () => {
       // Simulate network delay
       await delay(100);
 
-      const response = await axios.put(`/api/admin-details/${userId}`, formData, {
+      const response = await axios.put(`https://egrade-backend.onrender.com/api/admin-details/${userId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

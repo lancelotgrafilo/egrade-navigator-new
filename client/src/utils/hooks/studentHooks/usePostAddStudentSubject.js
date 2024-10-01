@@ -30,7 +30,7 @@ const usePostAddStudentSubject = (studentId) => {
   const handleSubmitStudentSubject = async () => {
     setIsStudentSubjectLoading(true);
     try {
-      const response = await axios.post("/api/post_student_subject", {
+      const response = await axios.post("https://egrade-backend.onrender.com/api/post_student_subject", {
         ...dataStudentSubject,
         _id: studentId,  // Include _id in the request data
       }, {

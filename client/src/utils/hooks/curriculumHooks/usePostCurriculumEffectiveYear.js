@@ -10,7 +10,7 @@ const usePostCurriculumEffectiveYear = () => {
   const fetchCurriculums = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get('/api/curriculum_effective_year'); // Adjust the endpoint as needed
+      const response = await axios.get('https://egrade-backend.onrender.com/api/curriculum_effective_year'); // Adjust the endpoint as needed
       setCurriculum(response.data);
     } catch (err) {
       setError(err);
@@ -26,7 +26,7 @@ const usePostCurriculumEffectiveYear = () => {
     setIsLoading(true);
     try {
         // Pass the curriculum year directly as a string in the request body
-        const response = await axios.post('/api/curriculum_effective_year', { curriculum_effective_year: curriculumYear });
+        const response = await axios.post('https://egrade-backend.onrender.com/api/curriculum_effective_year', { curriculum_effective_year: curriculumYear });
         setCurriculum((prevCurriculums) => [...prevCurriculums, response.data]);
     } catch (err) {
         setError(err);

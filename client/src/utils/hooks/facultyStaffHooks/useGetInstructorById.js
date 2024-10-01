@@ -11,7 +11,7 @@ const useGetInstructorById = (facultyID) => {
     if (facultyID !== null) { // Only fetch if the ID is set
       setLoading(true); // Start loading
       try {
-        const response = await axios.get(`/api/get_faculty_staff/${facultyID}`);
+        const response = await axios.get(`https://egrade-backend.onrender.com/api/get_faculty_staff/${facultyID}`);
         setInstructor(response.data);
         setErrorInstructor(null); // Clear any previous errors
       } catch (error) {

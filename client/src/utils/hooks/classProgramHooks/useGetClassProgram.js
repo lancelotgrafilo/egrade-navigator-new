@@ -11,7 +11,7 @@ const useFetchClassProgram = (searchQuery) => {
   const fetchClassProgram = useCallback(async () => {
     setClassProgramLoading(true); // Set loading to true before the fetch
     try {
-      const response = await axios.get('/api/get_class_program', {
+      const response = await axios.get('https://egrade-backend.onrender.com/api/get_class_program', {
         params: { search: searchQuery },
       });
       setClassPrograms(response.data);

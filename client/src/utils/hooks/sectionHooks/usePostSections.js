@@ -10,7 +10,7 @@ const usePostSections = () => {
   const fetchSections = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get('/api/sections'); // Adjust the endpoint as needed
+      const response = await axios.get('https://egrade-backend.onrender.com/api/sections'); // Adjust the endpoint as needed
       setSections(response.data);
     } catch (err) {
       setError(err);
@@ -25,7 +25,7 @@ const usePostSections = () => {
 
     setIsLoading(true);
     try {
-      const response = await axios.post('/api/sections', { section }); // Adjust the endpoint as needed
+      const response = await axios.post('https://egrade-backend.onrender.com/api/sections', { section }); // Adjust the endpoint as needed
       setSections((prevSections) => [...prevSections, response.data]);
     } catch (err) {
       setError(err);

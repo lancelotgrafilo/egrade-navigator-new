@@ -44,7 +44,7 @@ export function Subjects() {
   // Fetch selected subject data for editing
   useEffect(() => {
     if (isEditModalOpen && selectedSubjectId) {
-      fetch(`/api/get_subject/${selectedSubjectId}`)
+      fetch(`https://egrade-backend.onrender.com/api/get_subject/${selectedSubjectId}`)
         .then((response) => {
           if (!response.ok) {
             throw new Error('Network response was not ok');

@@ -12,7 +12,7 @@ const useDeleteInstructor = (classProgramId) => {
 
     try {
       await delay(3000);
-      const response = await axios.delete(`/api/del_class_program_instructor/${classProgramId}/${instructorId}`);
+      const response = await axios.delete(`https://egrade-backend.onrender.com/api/del_class_program_instructor/${classProgramId}/${instructorId}`);
       setIsLoading(false);
       return response.data;
     } catch (err) {

@@ -10,7 +10,7 @@ const useGetGradeSheets = (url) => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('/api/get-grade-sheet'); // Fetch data from the API
+        const response = await axios.get('https://egrade-backend.onrender.com/api/get-grade-sheet'); // Fetch data from the API
         setData(response.data);
       } catch (err) {
         setError(err.message || 'Something went wrong');

@@ -13,7 +13,7 @@ const useEditSubject = () => {
 
     try {
       await delay(500);
-      const response = await axios.put(`/api/update_subject/${id}`, updatedData, {
+      const response = await axios.put(`https://egrade-backend.onrender.com/api/update_subject/${id}`, updatedData, {
         headers: { 'Content-Type': 'application/json' },
       });
 

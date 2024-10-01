@@ -101,7 +101,7 @@ const useFacultySubmit = () => {
 
     try {
       await delay(100);
-      const response = await axios.post("/api/post_faculty_staff", dataFaculty, {
+      const response = await axios.post("https://egrade-backend.onrender.com/api/post_faculty_staff", dataFaculty, {
         headers: { 'Content-Type': 'application/json' }
       });
       if (response.status === 201){

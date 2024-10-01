@@ -13,7 +13,7 @@ const useDeleteClassProgram = () => {
     setLoading(true);
     try {
       await delay(500);
-      await axios.delete(`/api/del_class_program/${id}`);
+      await axios.delete(`https://egrade-backend.onrender.com/api/del_class_program/${id}`);
       toast.success('Class program deleted successfully');
     } catch (err) {
       console.error('Error deleting class program:', err);

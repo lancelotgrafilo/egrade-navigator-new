@@ -13,7 +13,7 @@ const useUpdateStudentGrades = (instructorId, studentId, midtermGrade, finalGrad
     setSuccess(false);
   
     try {
-      const response = await axios.post('/api/post_update_final_grade', { // Updated URL
+      const response = await axios.post('https://egrade-backend.onrender.com/api/post_update_final_grade', { // Updated URL
         instructorId,
         studentId,
         midtermGrade,

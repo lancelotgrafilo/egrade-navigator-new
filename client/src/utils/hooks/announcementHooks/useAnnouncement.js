@@ -11,7 +11,7 @@ export function useAnnouncements() {
   const fetchAnnouncements = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await axios.get('/api/announcements');
+      const response = await axios.get('https://egrade-backend.onrender.com/api/announcements');
       setAnnouncements(response.data);
     } catch (error) {
       toast.error('Failed to fetch announcements');

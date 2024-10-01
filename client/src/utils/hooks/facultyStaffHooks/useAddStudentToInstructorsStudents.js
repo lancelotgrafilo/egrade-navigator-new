@@ -18,7 +18,7 @@ const useAddStudentToInstructorsStudents = (facultyId, loadId) => {
 
     try {
       await delay(500);
-      const response = await axios.post(`/api/post_instructors_load_student/${facultyId}/load/${loadId}/add_student`, studentData);
+      const response = await axios.post(`https://egrade-backend.onrender.com/api/post_instructors_load_student/${facultyId}/load/${loadId}/add_student`, studentData);
       setIsLoading(false);
       return response.data; // Return the updated document
     } catch (err) {

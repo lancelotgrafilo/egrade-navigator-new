@@ -13,7 +13,7 @@ const useDeleteSubject = () => {
     setLoading(true);
     try {
       await delay(500);
-      await axios.delete(`/api/del_subject/${id}`);
+      await axios.delete(`https://egrade-backend.onrender.com/api/del_subject/${id}`);
       toast.success('Subject deleted successfully');
     } catch (err) {
       console.error('Error deleting subject:', err);

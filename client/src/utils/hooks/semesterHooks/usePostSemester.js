@@ -10,7 +10,7 @@ const usePostSemesters = () => {
   const fetchSemesters = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get('/api/semesters'); // Adjust the endpoint as needed
+      const response = await axios.get('https://egrade-backend.onrender.com/api/semesters'); // Adjust the endpoint as needed
       setSemesters(response.data);
     } catch (err) {
       setError(err);
@@ -25,7 +25,7 @@ const usePostSemesters = () => {
 
     setIsLoading(true);
     try {
-      const response = await axios.post('/api/semesters', { semester }); // Adjust the endpoint as needed
+      const response = await axios.post('https://egrade-backend.onrender.com/api/semesters', { semester }); // Adjust the endpoint as needed
       setSemesters((prevSemesters) => [...prevSemesters, response.data]);
     } catch (err) {
       setError(err);

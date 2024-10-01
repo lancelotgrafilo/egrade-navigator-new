@@ -10,7 +10,7 @@ const usePostAcademicYears = () => {
   const fetchAcademicYears = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get('/api/academic-years'); // Adjust the endpoint as needed
+      const response = await axios.get('https://egrade-backend.onrender.com/api/academic-years'); // Adjust the endpoint as needed
       setAcademicYears(response.data);
     } catch (err) {
       setError(err);
@@ -25,7 +25,7 @@ const usePostAcademicYears = () => {
 
     setIsLoading(true);
     try {
-      const response = await axios.post('/api/academic-years', { ay: academicYear }); // Adjust the endpoint as needed
+      const response = await axios.post('https://egrade-backend.onrender.com/api/academic-years', { ay: academicYear }); // Adjust the endpoint as needed
       setAcademicYears((prevYears) => [...prevYears, response.data]);
     } catch (err) {
       setError(err);

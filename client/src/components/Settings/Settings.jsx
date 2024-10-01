@@ -117,7 +117,7 @@ export function Settings() {
   useEffect(() => {
     if (currentUserDetails && Object.keys(currentUserDetails).length > 0) {
       // console.log('Current User Details:', currentUserDetails);
-      const backendUrl = 'http://localhost:5000';
+      const backendUrl = 'https://egrade-backend.onrender.com';
       const fullProfileImageUrl = currentUserDetails.user_profile
         ? `${backendUrl}${currentUserDetails.user_profile.startsWith('/uploads') ? '' : '/uploads/user-profiles/'}${currentUserDetails.user_profile}`
         : userProfile;
@@ -149,9 +149,9 @@ export function Settings() {
   
     // Determine the correct API endpoint based on userTitle
     if (userTitle === 'admin') {
-      endpoint = '/api/validate-current-password-admin';
+      endpoint = 'https://egrade-backend.onrender.com/api/validate-current-password-admin';
     } else if (userTitle === 'college_staff') {
-      endpoint = '/api/validate-current-password-college-staff';
+      endpoint = 'https://egrade-backend.onrender.com/api/validate-current-password-college-staff';
     }
   
     try {
@@ -272,7 +272,7 @@ export function Settings() {
     await delay(200);
     try {
       // Directly update user verification status
-      await axios.post('/api/update-verification-status', { userId });
+      await axios.post('https://egrade-backend.onrender.com/api/update-verification-status', { userId });
       toast.success('Email verified and status updated successfully');
       resetCode();
       setCodeSent(false);

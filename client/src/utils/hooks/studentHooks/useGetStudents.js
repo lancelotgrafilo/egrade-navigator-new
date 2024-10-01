@@ -13,7 +13,7 @@ const useFetchStudents = (searchQuery) => {
   const fetchStudents = useCallback(async () => {
     setStudentLoading(true); // Set loading to true before fetching
     try {
-      const response = await axios.get('/api/get_students', {
+      const response = await axios.get('https://egrade-backend.onrender.com/api/get_students', {
         params: { search: searchQuery },
       });
       setStudents(response.data);

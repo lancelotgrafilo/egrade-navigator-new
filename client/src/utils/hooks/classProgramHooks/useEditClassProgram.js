@@ -11,7 +11,7 @@ const useEditClassProgram = () => {
     setLoading(true);
     try {
       await delay(500);
-      const response = await axios.put(`/api/update_class_program/${id}`, updatedData);
+      const response = await axios.put(`https://egrade-backend.onrender.com/api/update_class_program/${id}`, updatedData);
       toast.success('Class program updated successfully');
       console.log('Updated class program:', response.data);
     } catch (err) {

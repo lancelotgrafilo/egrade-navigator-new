@@ -529,5 +529,10 @@
     height: 24px;
   }
   
+  .loader{
+    width: 14px;
+    aspect-ratio: 1;
+    border: 3px solid #1b4a9c;
+  }
 
 }

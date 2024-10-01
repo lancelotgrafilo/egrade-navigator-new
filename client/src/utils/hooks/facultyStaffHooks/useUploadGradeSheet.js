@@ -15,7 +15,7 @@ const useUploadGradeSheet = (instructorId) => {
     formData.append('last_name', last_name);
 
     try {
-      const response = await axios.post('/api/post_upload_gradeSheet', formData, {
+      const response = await axios.post('https://egrade-backend.onrender.com/api/post_upload_gradeSheet', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

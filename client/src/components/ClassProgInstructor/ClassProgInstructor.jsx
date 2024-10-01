@@ -2,7 +2,6 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import debounce from 'lodash/debounce';
 import { toast } from 'react-toastify';
-import axios from "axios";
 
 import styleCPI from './classProgInstructor.module.css';
 import backArrow from '../../assets/icons/back.png';

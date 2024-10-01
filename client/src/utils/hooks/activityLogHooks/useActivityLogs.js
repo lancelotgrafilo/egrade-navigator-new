@@ -11,7 +11,7 @@ export function useActivityLogs() {
   useEffect(() => {
     const fetchLogs = async () => {
       try {
-        const response = await axios.get('/api/activity-logs');
+        const response = await axios.get('https://egrade-backend.onrender.com/api/activity-logs');
         setLogs(response.data);
         // Show success toast if logs are loaded
         toast.info("📜 Activity logs loaded successfully! 🎉");

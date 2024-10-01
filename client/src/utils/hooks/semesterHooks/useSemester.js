@@ -10,7 +10,7 @@ const useSemester = () => {
   useEffect(() => {
     const fetchSemester = async () => {
       try {
-        const response = await axios.get('/api/semesters');
+        const response = await axios.get('https://egrade-backend.onrender.com/api/semesters');
         setSemester(response.data);
       } catch (error) {
         setError('Failed to fetch semesters');

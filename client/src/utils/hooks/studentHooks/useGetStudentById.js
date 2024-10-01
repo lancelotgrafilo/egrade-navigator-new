@@ -11,7 +11,7 @@ const useGetStudentById = (schoolID) => {
     if (schoolID !== null) { // Only fetch if the ID is set
       setLoading(true); // Start loading
       try {
-        const response = await axios.get(`/api/get_students/${schoolID}`);
+        const response = await axios.get(`https://egrade-backend.onrender.com/api/get_students/${schoolID}`);
         setStudentById(response.data);
         setErrorStudent(null); // Clear any previous errors
       } catch (error) {

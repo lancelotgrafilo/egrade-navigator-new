@@ -12,7 +12,7 @@ function useGetLeaderboard(searchQuery, academicYear, semester, course) {
     const fetchLeaderboard = async () => {
       setLoading(true); // Set loading to true before fetching
       try {
-        const response = await axios.get('/api/get_leaderboard', {
+        const response = await axios.get('https://egrade-backend.onrender.com/api/get_leaderboard', {
           params: { search: searchQuery, academicYear, semester, course }
         });
         setLeaderboard(response.data);

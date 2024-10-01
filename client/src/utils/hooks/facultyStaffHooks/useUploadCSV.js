@@ -23,7 +23,7 @@ const useUploadCSV = () => {
 
       // Make a POST request to upload the CSV
       const response = await axios.post(
-        `/api/post_instructors_load_upload_students/${instructorId}/load/${loadId}`,
+        `https://egrade-backend.onrender.com/api/post_instructors_load_upload_students/${instructorId}/load/${loadId}`,
         formData,
         {
           headers: {

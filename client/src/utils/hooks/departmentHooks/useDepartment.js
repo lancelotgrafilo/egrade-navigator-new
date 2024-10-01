@@ -8,7 +8,7 @@ const useDepartments = () => {
 
   const fetchDepartments = async () => {
     try {
-      const response = await axios.get('/api/departments'); // Adjust the endpoint as needed
+      const response = await axios.get('https://egrade-backend.onrender.com/api/departments'); // Adjust the endpoint as needed
       setDepartments(response.data);
     } catch (err) {
       setError(err);
@@ -22,7 +22,7 @@ const useDepartments = () => {
 
     setIsLoading(true);
     try {
-      const response = await axios.post('/api/departments', { department: departmentName });
+      const response = await axios.post('https://egrade-backend.onrender.com/api/departments', { department: departmentName });
       setDepartments((prevDepartments) => [...prevDepartments, response.data]);
     } catch (err) {
       setError(err);

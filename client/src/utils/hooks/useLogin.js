@@ -1,28 +1,26 @@
 import { useState } from 'react';
-import axios from 'axios';
+import axios from '../../axiosConfig';
 
 const useLogin = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   
-  const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
   
   const login = async (data, navigate) => {
     setLoading(true);
     setError("");
 
     try {
-      await delay(300);
       
-      const url = "http://localhost:5000/api/login";
+      const url = `https://egrade-backend.onrender.com/api/login`;
       const response = await axios.post(url, data);
       const { token, title } = response.data;
-
+      
       if (token && title ) {
         // Store token and title in localStorage
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify({ title }));
-        console.log("User data saved to localStorage:", { token, title }); // Debugging line
+        
 
         // Re-check that the token and title have been saved correctly
         const savedToken = localStorage.getItem("token");
@@ -52,8 +50,10 @@ const useLogin = () => {
           }
         } else {
           setError("Failed to save user data correctly");
+          
         }
       } else {
+        console.log('Missing token or title:', { token, title });
         setError("Login response does not contain token or title");
       }
     } catch (error) {

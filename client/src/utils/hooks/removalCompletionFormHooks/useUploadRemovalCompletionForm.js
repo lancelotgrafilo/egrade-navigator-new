@@ -12,7 +12,7 @@ const useUploadRemovalCompletionForm = () => {
     setSuccess(null);
 
     try {
-      const response = await axios.post('/api/post-upload-removal-completion-form', formData, {
+      const response = await axios.post('https://egrade-backend.onrender.com/api/post-upload-removal-completion-form', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

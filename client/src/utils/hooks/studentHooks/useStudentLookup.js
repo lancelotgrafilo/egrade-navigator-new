@@ -9,7 +9,7 @@ const useStudentLookup = (last_name, first_name) => {
   useEffect(() => {
     const fetchStudentDetails = async () => {
       try {
-        const response = await axios.get(`/api/student-lookup`, {
+        const response = await axios.get(`https://egrade-backend.onrender.com/api/student-lookup`, {
           params: {
             lastName: last_name,
             firstName: first_name,
